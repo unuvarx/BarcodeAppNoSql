@@ -1,0 +1,55 @@
+.homeContainer {
+  .homeHead {
+    margin-top: 16px;
+    background-color: var(--dark-background-color);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 32px;
+    img {
+      width: 150px;
+      height: 75px;
+      border-radius: 8px;
+      object-fit: fill;
+    }
+    button {
+      border-radius: 8px;
+      border: none;
+      padding: 16px;
+      font-weight: bold;
+      font-size: 18px;
+      color: #fff;
+      background-color: var(--red-color);
+      cursor: pointer;
+      transition: padding 0.2s;
+    }
+    button:hover {
+      padding: 18px;
+    }
+  }
+  .homeTitle {
+    margin-top: 6rem;
+    div {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      width: 60%;
+      margin: 0 auto;
+      .title {
+        color: var(--white-color);
+        font-size: 3rem;
+        font-weight: bold;
+      }
+      .description {
+        color: var(--grey-color);
+        margin-top: 1rem;
+      }
+    }
+  }
+  .carousel {
+    height: 50rem;
+   margin-top: 6rem;
+  }
+}

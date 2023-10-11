@@ -1,0 +1,72 @@
+
+.carouselContainer {
+  height: 100%;
+  width: 100%;
+  input[type="radio"] {
+    display: none;
+  }
+
+  .card {
+    position: absolute;
+    width: 60%;
+    height: 100%;
+    left: 0;
+    right: 0;
+    margin: auto;
+    transition: transform 0.4s ease;
+    cursor: pointer;
+  }
+
+  .container {
+    width: 100%;
+   
+    height: 100%;
+    transform-style: preserve-3d;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cards {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    margin-bottom: 20px;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+  }
+
+  #item1:checked ~ .cards #song3,
+  #item2:checked ~ .cards #song1,
+  #item3:checked ~ .cards #song2 {
+    transform: translatex(-40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  #item1:checked ~ .cards #song2,
+  #item2:checked ~ .cards #song3,
+  #item3:checked ~ .cards #song1 {
+    transform: translatex(40%) scale(0.8);
+    opacity: 0.4;
+    z-index: 0;
+  }
+
+  #item1:checked ~ .cards #song1,
+  #item2:checked ~ .cards #song2,
+  #item3:checked ~ .cards #song3 {
+    transform: translatex(0) scale(1);
+    opacity: 1;
+    z-index: 1;
+
+    img {
+      box-shadow: 0px 0px 5px 0px rgba(81, 81, 81, 0.47);
+    }
+  }
+}
