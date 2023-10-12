@@ -5,7 +5,7 @@ const Carousel = () => {
   const [activeItem, setActiveItem] = useState(1);
 
   const handleRadioChange = (event) => {
-    const newItem = parseInt(event.target.id.split("-")[1]);
+    
     console.log();
     setActiveItem(Number(event.target.value));
   };
@@ -38,19 +38,19 @@ const Carousel = () => {
           id={styles.item3}
         />
         <div className={styles.cards}>
-          <label className={styles.card} for={styles.item1} id={styles.song1}>
+          <label className={styles.card} htmlFor={styles.item1} id={styles.song1}>
             <img
               src="https://images.unsplash.com/photo-1530651788726-1dbf58eeef1f?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=882&q=80"
               alt="song"
             />
           </label>
-          <label className={styles.card} for={styles.item2} id={styles.song2}>
+          <label className={styles.card} htmlFor={styles.item2} id={styles.song2}>
             <img
               src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"
               alt="song"
             />
           </label>
-          <label className={styles.card} for={styles.item3} id={styles.song3}>
+          <label className={styles.card} htmlFor={styles.item3} id={styles.song3}>
             <img
               src="https://images.unsplash.com/photo-1533461502717-83546f485d24?ixlib=rb-1.2.1&auto=format&fit=crop&w=900&q=60"
               alt="song"
