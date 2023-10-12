@@ -1,5 +1,63 @@
 .footerContainer {
     
-
-    
+    background-color: var(--dark-background-color);
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 6rem;
+    .title {
+        background-color: var(--dark-background-color);
+        font-size: 2rem;
+        color: var(--white-color);
+            margin-bottom: 16px;
+    }
+    .footerPages {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        flex-wrap: wrap;
+        background-color: var(--dark-background-color);
+        span {
+        
+            color: var(--grey-color);
+            background-color: var(--dark-background-color);
+            margin: 0 8px;
+            cursor: pointer;
+        }
+        span:hover {
+            text-decoration: underline;
+        }
+        
+    }
+    .icons {
+        background-color: var(--dark-background-color);
+        margin-top: 16px;
+        svg {
+            background-color: var(--dark-background-color);
+            width: 2.5rem;
+            height: 2.5rem;
+            color: var(--grey-color);
+            margin: 0 8px;
+            
+        }
+    }
+    .hr {
+        height: 2px;
+        background-color: var(--background-color);
+        margin: 2rem;
+        width: 100%;
+    }
+    .foot {
+        background-color: var(--dark-background-color);
+        span {
+            color: var(--grey-color);
+            background-color: var(--dark-background-color);
+            label {
+            font-weight: bold;
+            background-color: var(--dark-background-color);
+            }
+        }
+    }
 }

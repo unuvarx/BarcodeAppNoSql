@@ -1,5 +1,10 @@
 import React from "react";
 import styles from "./footer.module.scss";
+import {
+  AiOutlineInstagram,
+  AiFillLinkedin,
+  AiFillTwitterSquare,
+} from "react-icons/ai";
 
 export default function Footer() {
   return (
@@ -12,7 +17,13 @@ export default function Footer() {
         <span> Kullanıcı Sözleşmesi </span>
       </div>
       <div className={styles.icons}>
-        
+        <AiOutlineInstagram />
+        <AiFillTwitterSquare />
+        <AiFillLinkedin />
+      </div>
+      <div className={styles.hr}></div>
+      <div className={styles.foot}>
+        <span>Copyright © <label htmlFor="">Hızlı Barkod</label> 2023 tüm hakları saklıdır.</span>
       </div>
     </div>
   );
