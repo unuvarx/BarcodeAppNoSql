@@ -12,8 +12,10 @@ import { FaHandshakeSimple } from "react-icons/fa";
 import { MdGppGood } from "react-icons/md";
 import { AiFillWechat } from "react-icons/ai";
 import Footer from "@/components/footer";
+import { useRouter } from "next/router";
 
 export default function Home() {
+  const router = useRouter();
   const cloudContainerRef = useRef(null);
   const cloudContainerLeftRef = useRef(null);
   const cloudContainerRightRef = useRef(null);
@@ -25,7 +27,6 @@ export default function Home() {
     const cloudContainer = cloudContainerRef.current;
     const cloudContainerLeft = cloudContainerLeftRef.current;
     const cloudContainerRight = cloudContainerRightRef.current;
-
 
     // Scroll olaylarını dinlemek için bir event listener ekleyin
     const handleScroll = () => {
@@ -99,7 +100,24 @@ export default function Home() {
     <div className={styles.homeContainer}>
       <div className={styles.homeHead}>
         <img src="/images/logo.jpg" alt="" />
-        <button>Hemen Kayıt Ol</button>
+        <div>
+          <button
+            className={styles.register}
+            onClick={() => {
+              router.push("/auth/register");
+            }}
+          >
+            Kayıt Ol
+          </button>
+          <button
+            className={styles.login}
+            onClick={() => {
+              router.push("/auth/login");
+            }}
+          >
+            Giriş Yap
+          </button>
+        </div>
       </div>
       <div className={styles.homeTitle}>
         <div>
@@ -116,6 +134,19 @@ export default function Home() {
       </div>
       <div className={styles.carousel}>
         <Carousel />
+      </div>
+      <div className={styles.suitable}>
+        <div className={styles.helpContainer}>
+          <span className={styles.title}>
+            +8 Farklı İşletmede Kullanılabilirlik
+          </span>
+          <span className={styles.description}>
+            Perakende satış yapan işletmeler için barkodlu satış ve stok takip
+            yazılımı Hızlı Barkod market, kırtasiye, kuruyemiş, petrol
+            istasyonu, şarküteri, manav, züccaciye, giyim mağazası ve daha
+            birçok esnaf kolu için uygundur.
+          </span>
+        </div>
       </div>
       <div ref={cloudContainerRef}></div>
       <div className={styles.cloudContainer}>
@@ -200,6 +231,17 @@ export default function Home() {
             iletişim kurabilirsiniz.
           </span>
         </div>
+      </div>
+      <div className={styles.helpContainer}>
+        <span className={styles.title}>
+          Yardıma mı ihtiyacınız var? Yanınızdayız!
+        </span>
+        <span className={styles.description}>
+          Yardıma ihtiyacınız olduğunda bizimle her zaman telefon, e-posta ve
+          WhatsApp destek kanallarımız ile iletişime geçebilirsiniz. Destek
+          sayfasından Hızlı Barkod'u nasıl kullanacağınıza dair hazırladığımız
+          içeriklere erişebilirsiniz.
+        </span>
       </div>
       <Footer />
     </div>

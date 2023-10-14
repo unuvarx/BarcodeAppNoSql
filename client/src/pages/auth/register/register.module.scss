@@ -1,0 +1,104 @@
+.registerContainer {
+  height: 100vh;
+  height: 100vh;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  @media screen and (max-width: 832px) {
+    flex-direction: column;
+    height: 100%;
+  }
+  .register {
+    background-color: var(--dark-background-color);
+    width: 80%;
+    margin: 0 auto;
+    padding: 2rem;
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 832px) {
+      flex-direction: column;
+
+    }
+    img {
+      width: 17rem;
+      height: 17rem;
+      object-fit: cover;
+      border-radius: 100%;
+      background-color: var(--dark-background-color);
+      @media screen and (max-width: 832px) {
+        width: 15rem;
+        height: 15rem;
+
+      }
+      @media screen and (max-width: 832px) {
+        width: 10rem;
+        height: 10rem;
+
+      }
+      @media screen and (max-width: 350px) {
+        width: 5rem;    
+        height: 5rem;    
+      }
+    }
+    .inputsContainer {
+      margin-left: 2rem;
+      display: flex;
+      flex-direction: column;
+      background-color: var(--dark-background-color);
+      @media screen and (max-width: 832px) {
+        margin-left: 0; 
+        margin-top: 2rem;
+      }
+      label {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 1rem;
+        background-color: var(--dark-background-color);
+        span {
+          font-size: 14px;
+          color: var(--white-color);
+          background-color: var(--dark-background-color);
+        }
+        input {
+          outline: none;
+          margin-top: 4px;
+          border: none;
+          border: 2px solid var(--grey-color);
+          height: 2rem;
+          border-radius: 4px;
+          background-color: var(--dark-background-color);
+          width: 20rem;
+          color: var(--white-color);
+          @media screen and (max-width: 350px) {
+            width: 100%;    
+          }
+          
+        }
+        input:focus {
+          border-color: var(--red-color);
+        }
+      }
+      button {
+        margin-top: 1.5rem;
+        border-radius: 8px;
+        border: none;
+        padding: 1rem;
+        background-color: var(--red-color);
+        font-size: 15px;
+        font-weight: bold;
+        color: var(--white-color);
+        cursor: pointer;
+      }
+      a {
+        color: var(--red-color);
+        font-size: 12px;
+        text-decoration: none;
+        margin-top: 8px;
+        background-color: var(--dark-background-color);
+      }
+    }
+  }
+}

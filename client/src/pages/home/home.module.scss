@@ -10,7 +10,7 @@
     align-items: center;
     justify-content: space-between;
     padding: 16px 32px;
-   
+
     @media screen and (max-width: 567px) {
       padding: 16px 16px;
     }
@@ -20,19 +20,40 @@
       border-radius: 8px;
       object-fit: fill;
     }
-    button {
-      border-radius: 8px;
-      border: none;
-      padding: 16px;
-      font-weight: bold;
-      font-size: 18px;
-      color: #fff;
-      background-color: var(--red-color);
-      cursor: pointer;
-      transition: padding 0.2s;
-    }
-    button:hover {
-      padding: 18px;
+    div {
+      background-color: var(--dark-background-color);
+      .register {
+        border-radius: 8px;
+        border: none;
+        padding: 16px;
+        font-weight: bold;
+        font-size: 18px;
+        color: var(--white-color);
+        background-color: var(--red-color);
+        cursor: pointer;
+        transition: padding 0.2s;
+        margin-left: 16px;
+      }
+      .register:hover {
+        padding: 17px;
+        color: var(--dark-background-color);
+      }
+      .login {
+        border-radius: 8px;
+        border: none;
+        padding: 16px;
+        font-weight: bold;
+        font-size: 18px;
+        color: var(--dark-background-color);
+        background-color: var(--grey-color);
+        cursor: pointer;
+        transition: padding 0.2s;
+        margin-left: 16px;
+      }
+      .login:hover {
+        padding: 17px;
+        color: var(--white-color);
+      }
     }
   }
   .homeTitle {
@@ -72,6 +93,18 @@
         }
         @media screen and (max-width: 367px) {
         }
+      }
+    }
+  }
+  .suitable {
+    background-color: var(--dark-background-color);
+    padding: 6rem 0;
+    margin-top: 6rem;
+    div {
+      margin-top: 0;
+      background-color: var(--dark-background-color);
+      span {
+        background-color: var(--dark-background-color);
       }
     }
   }
@@ -142,7 +175,7 @@
     flex-wrap: wrap;
     justify-content: space-around;
     padding: 0 5rem;
-  
+
     overflow: hidden;
     @media screen and (max-width: 503px) {
       padding: 1rem;
@@ -160,10 +193,11 @@
       align-items: center;
       text-align: center;
       padding: 1rem;
-      border: 2px solid var(--red-color);
+      background-color: var(--dark-background-color);
       border-radius: 8px;
       overflow: hidden;
       svg {
+        background-color: var(--dark-background-color);
         stroke: currentcolor;
         fill: currentcolor;
         stroke-width: 0;
@@ -176,8 +210,28 @@
       span {
         font-size: 14px;
         margin-top: 8px;
-        color: var(--white-color)
+        color: var(--white-color);
+        background-color: var(--dark-background-color);
       }
+    }
+  }
+  .helpContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 70%;
+    margin: 0 auto;
+    margin-top: 6rem;
+    .title {
+      color: var(--white-color);
+      font-size: 2rem;
+    }
+    .description {
+      color: var(--grey-color);
+      font-size: 15px;
+      margin-top: 16px;
     }
   }
 }
