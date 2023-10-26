@@ -1,11 +1,12 @@
 .navbarContainer {
+  margin: 0 8px;
   .profile {
     display: flex;
     flex-direction: row;
     justify-content: flex-end;
     align-items: center;
     @media screen and (max-width: 919px) {
-      justify-content: space-between;      
+      justify-content: space-between;
     }
     div {
       padding: 4px;
@@ -40,7 +41,6 @@
       height: 100vh;
       justify-content: flex-start;
       position: absolute;
-      
     }
     .img {
       display: flex;
@@ -94,6 +94,23 @@
         border-bottom: 2px solid var(--red-color);
         svg {
           color: var(--red-color);
+        }
+        span {
+          color: var(--grey-color);
+        }
+      }
+      .deActive {
+        span,
+        svg {
+          
+          transition-duration: 0.2s;
+          height: 100%;
+        }
+      }
+      .deActive:hover {
+        
+        svg {
+          color: var(--grey-color);
         }
         span {
           color: var(--grey-color);

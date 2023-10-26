@@ -39,19 +39,19 @@ export default function Navbar() {
     setNavbarControl(!navbarControl);
     const navbar = navbarRef.current;
     gsap.to(navbar, {
-      x: 0, // Navbar'ı orijinal konumuna geri getir
+      x: 0,
       duration: 0.6,
-      opacity: 1, // Opaklığı yeniden eski haline getir
+      opacity: 1, 
     });
   };
   const handleCloseNavbar = () => {
     const navbar = navbarRef.current;
     setNavbarControl(!navbarControl);
-    console.log(navbarControl);
+    
     gsap.to(navbar, {
-      x: -500, // Navbar'ı orijinal konumuna geri getir
+      x: -500,
       duration: 0.8,
-      opacity: 1, // Opaklığı yeniden eski haline getir
+      opacity: 1, 
     });
   };
   const OpenAndClose = () => {
@@ -65,9 +65,9 @@ export default function Navbar() {
     } else {
       const navbar = navbarRef.current;
       gsap.to(navbar, {
-        x: 0, // Navbar'ı orijinal konumuna geri getir
+        x: 0,
         duration: 0.8,
-        opacity: 1, // Opaklığı yeniden eski haline getir
+        opacity: 1, 
       });
 
      
@@ -75,7 +75,15 @@ export default function Navbar() {
     }
   };
   useEffect(() => {
-    setNavbarControl(false)
+    if (windowWidth <= 918) {
+      setNavbarControl(false)
+      const navbar = navbarRef.current;
+      gsap.to(navbar, {
+        x: 0,
+        duration: 0.8,
+        opacity: 1, 
+      });
+    }
   }, [windowWidth])
   return (
     <div className={styles.navbarContainer}>

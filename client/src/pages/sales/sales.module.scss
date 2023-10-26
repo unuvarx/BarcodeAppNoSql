@@ -1,0 +1,25 @@
+.salesContainer {
+  .sale {
+    padding: 8px;
+    margin-top: 2rem;
+   
+    .productsListContainer {
+        margin-top: 2rem;
+        button {
+            background-color: #0080ff;
+            border: none;
+            padding: 1rem;
+            border-radius: 4px;
+            font-size: 1.4rem;
+            cursor: pointer;
+            color: #fff;
+            transition: all 0.3s
+
+
+        }
+        button:hover {
+            background-color: #006edc;
+        }
+    }
+  }
+}

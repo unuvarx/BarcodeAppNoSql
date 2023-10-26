@@ -1,8 +1,11 @@
-import { configureStore } from "@reduxjs/toolkit";
+import { configureStore } from '@reduxjs/toolkit';
+import barcodeInputsReducer from '@/redux/reducers/barcodeInputSlice';
 
-
-export default configureStore({
+const store = configureStore({
   reducer: {
-   
+    barcodeInputs: barcodeInputsReducer,
+    // Diğer Slice'larınızı burada ekleyin (eğer varsa)
   },
 });
+
+export default store;
