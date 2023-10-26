@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { gsap } from "gsap";
 import styles from "./home.module.scss";
 import Carousel from "@/components/carousel";
@@ -13,7 +13,6 @@ import { MdGppGood } from "react-icons/md";
 import { AiFillWechat } from "react-icons/ai";
 import Footer from "@/components/footer";
 import { useRouter } from "next/router";
-
 export default function Home() {
   const router = useRouter();
   const cloudContainerRef = useRef(null);
@@ -96,6 +95,8 @@ export default function Home() {
       rect.right <= (window.innerWidth || document.documentElement.clientWidth)
     );
   }
+
+
   return (
     <div className={styles.homeContainer}>
       <div className={styles.homeHead}>

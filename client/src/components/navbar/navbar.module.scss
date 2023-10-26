@@ -1,0 +1,104 @@
+.navbarContainer {
+  .profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    align-items: center;
+    @media screen and (max-width: 919px) {
+      justify-content: space-between;      
+    }
+    div {
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      svg {
+        background-color: var(--dark-background-color);
+        border-radius: 100%;
+        margin-left: 4px;
+        font-size: 1rem;
+        padding: 4px;
+        color: var(--grey-color);
+      }
+      a {
+        font-size: 13px;
+        color: var(--grey-color);
+      }
+    }
+  }
+  .navbar {
+    background-color: var(--dark-background-color);
+    padding: 8px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    @media screen and (max-width: 919px) {
+      flex-direction: column;
+      align-items: flex-start;
+      width: 15rem;
+      height: 100vh;
+      justify-content: flex-start;
+      position: absolute;
+      
+    }
+    .img {
+      display: flex;
+      justify-content: center;
+      background-color: var(--dark-background-color);
+      @media screen and (max-width: 919px) {
+        flex-direction: column;
+        align-items: center;
+        width: -webkit-fill-available;
+      }
+      img {
+        width: 8rem;
+        height: 4rem;
+        object-fit: cover;
+        border-radius: 8px;
+      }
+    }
+    .pagesContainer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 80%;
+      background-color: var(--dark-background-color);
+      @media screen and (max-width: 919px) {
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 2rem;
+      }
+      div {
+        display: flex;
+        align-items: center;
+        background-color: var(--dark-background-color);
+        padding: 5px;
+        cursor: pointer;
+        svg {
+          font-size: 20px;
+          background-color: var(--dark-background-color);
+          color: var(--white-color);
+        }
+        span {
+          font-size: 16px;
+          color: var(--white-color);
+          background-color: var(--dark-background-color);
+          margin-left: 4px;
+        }
+        @media screen and (max-width: 919px) {
+          margin: 8px;
+        }
+      }
+      .active {
+        border-bottom: 2px solid var(--red-color);
+        svg {
+          color: var(--red-color);
+        }
+        span {
+          color: var(--grey-color);
+        }
+      }
+    }
+  }
+}
