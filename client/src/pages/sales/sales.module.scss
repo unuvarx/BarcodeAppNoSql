@@ -67,12 +67,17 @@
             }
           }
           .trash {
-            svg {
-              color: var(--red-color);
-              font-size: 1.5rem;
+            span {
               background-color: transparent;
-              cursor: p;
+              svg {
+                color: var(--red-color);
+                font-size: 1.5rem;
+                background-color: transparent;
+                cursor: pointer;
+              
+              }
             }
+            
           }
           .update {
             span {

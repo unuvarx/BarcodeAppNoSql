@@ -4,37 +4,18 @@ import withAuth from "@/lib/withAuth";
 import Navbar from "@/components/navbar";
 import FindBarcodeInput from "@/components/findBarcodeInput";
 import { BsFillTrashFill } from "react-icons/bs";
+import { useSelector, useDispatch } from "react-redux";
+import { setData } from "@/redux/reducers/barcodeInputSlice";
 
 import { AiOutlineCloseCircle } from "react-icons/ai";
 import Footer from "@/components/footer";
 
 const Sales = () => {
-  const data = [
-    {
-      id: "asfasfrg1234343425",
-      barcode: "1234567891234567",
-      product: "EKMEK",
-      price: "7.50",
-    },
-    {
-      id: "asf23442343242343",
-      barcode: "1234567891234567",
-      product: "SU",
-      price: "4.50",
-    },
-    {
-      id: "as56546242343",
-      barcode: "1234567891234567",
-      product: "ETİ KARAM",
-      price: "9.50",
-    },
-    {
-      id: "62342134231465sdfgsd",
-      barcode: "1234567891234567",
-      product: "SİMİT",
-      price: "1.50",
-    },
-  ];
+  const { data } = useSelector((state) => state.barcodeInputs);
+  const dispatch = useDispatch();
+  const handleDeleteAll = () => {
+    dispatch(setData([]));
+  };
   const Tr = ({ barcode, product, amount, price, id }) => {
     const [priceValue, setPriceValue] = useState(price);
     const [amountValue, setAmountValue] = useState(amount);
@@ -52,6 +33,7 @@ const Sales = () => {
         calculateCost();
       }
     };
+  
     const handleDecrease = () => {
       try {
         if (amountValue >= 2) {
@@ -65,9 +47,16 @@ const Sales = () => {
     };
     const handleIncrease = () => {
       try {
-        finded.amount++;
-        setAmountValue(Number(amountValue) + 1);
+        const updatedData = data.map((item) => {
+          if (item.id === id) {
+            return { ...item, amount: item.amount + 1 };
+          }
+          return item;
+        });
+        dispatch(setData(updatedData));
+        setAmountValue(updatedData.find((item) => item.id === id).amount);
         calculateCost();
+        console.log(String(Number(finded.price) * Number(finded.amount)));
       } catch (error) {
         console.log(error);
       }
@@ -83,12 +72,17 @@ const Sales = () => {
     const changeUpdate = () => {
       finded.update = true;
     };
-    console.log(data);
 
+    const handleDelete = () => {
+      const red = data.filter((item) => item.id !== id);
+      dispatch(setData(red));
+    };
     return (
       <tr>
         <td className={styles.close}>
-          <AiOutlineCloseCircle />
+          <span onClick={handleDelete}>
+            <AiOutlineCloseCircle />
+          </span>
         </td>
         <td>{barcode}</td>
         <td> {product} </td>
@@ -128,7 +122,9 @@ const Sales = () => {
               <thead>
                 <tr>
                   <th className={styles.trash}>
-                    <BsFillTrashFill />
+                    <span onClick={handleDeleteAll}>
+                      <BsFillTrashFill />
+                    </span>
                   </th>
                   <th>Barkod</th>
                   <th>Ürün</th>
@@ -149,7 +145,7 @@ const Sales = () => {
                     id={item.id}
                     barcode={item.barcode}
                     product={item.product}
-                    amount={(item.amount = 1)}
+                    amount={item.amount}
                     price={item.price}
                     cost={item.cost}
                   />

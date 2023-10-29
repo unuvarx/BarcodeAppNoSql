@@ -15,4 +15,5 @@ body {
 * {
   background-color: var(--background-color);
   font-family: 'Poppins', sans-serif;
+  transition: all 0.2s;
 }

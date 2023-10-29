@@ -1,10 +1,13 @@
 import { configureStore } from '@reduxjs/toolkit';
 import barcodeInputsReducer from '@/redux/reducers/barcodeInputSlice';
+import authRegisterReducer from "@/redux/reducers/authSlice/register";
+import authLoginReducer from "@/redux/reducers/authSlice/login";
 
 const store = configureStore({
   reducer: {
     barcodeInputs: barcodeInputsReducer,
-    // Diğer Slice'larınızı burada ekleyin (eğer varsa)
+    register: authRegisterReducer,
+    login: authLoginReducer,
   },
 });
 

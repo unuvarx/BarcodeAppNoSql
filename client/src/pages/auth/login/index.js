@@ -19,7 +19,7 @@ export default function Login() {
           </label>
 
           <button>Giriş Yap</button>
-          <a href="/auth/register">Üye misiniz? Kayıt Ol</a>
+          <a href="/auth/register">Üye değil misiniz? Kayıt Ol</a>
         </div>
       </div>
       
