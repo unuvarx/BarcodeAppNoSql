@@ -1,39 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-
 const initialState = {
   barcode: "",
-  paid: "",
+  paid: 0,
   cost: 0,
   changeMoney: 0,
-  
   data: [
     {
       id: "asfasfrg1234343425",
       barcode: "1234567891234567",
       product: "EKMEK",
       price: "7.50",
-      amount: 1,
     },
     {
       id: "asf23442343242343",
       barcode: "1234567891234567",
       product: "SU",
       price: "4.50",
-      amount: 1,
     },
     {
       id: "as56546242343",
       barcode: "1234567891234567",
       product: "ETİ KARAM",
       price: "9.50",
-      amount: 1,
     },
     {
       id: "62342134231465sdfgsd",
       barcode: "1234567891234567",
       product: "SİMİT",
       price: "1.50",
-      amount: 1,
     },
   ],
 };

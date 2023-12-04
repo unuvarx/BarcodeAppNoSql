@@ -1,0 +1,153 @@
+
+    .tr {
+      border-bottom: 1px solid var(--dark-background-color);
+
+      td {
+        padding: 1rem;
+        color: var(--grey-color);
+        width: 15rem;
+      }
+      .close {
+        svg {
+          color: var(--red-color);
+          font-size: 1.1rem;
+          cursor: pointer;
+        }
+      }
+      .amount {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        justify-content: center;
+        .decrease {
+          background-color: red;
+          color: #fff;
+          border: none;
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 4px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        .increase {
+          background-color: green;
+          color: #fff;
+          border: none;
+          width: 1.5rem;
+          height: 1.5rem;
+          border-radius: 4px;
+          font-weight: bold;
+          cursor: pointer;
+        }
+        input {
+          outline: none;
+          width: 4.5rem;
+          margin: 0 4px;
+          color: var(--dark-background-color);
+          text-align: center;
+          background-color: var(--white-color);
+          border: none;
+        }
+      }
+      .price {
+        input {
+          background-color: var(--white-color);
+          border: none;
+          width: 4.5rem;
+          outline: none;
+          text-align: center;
+        }
+      }
+      .cost {
+        input {
+          background-color: var(--grey-color);
+          width: 4.5rem;
+          border: none;
+          outline: none;
+          text-align: center;
+          pointer-events: none;
+        }
+      }
+    }
+  
+
+@media (max-width: 767px) {
+  .flTable {
+    display: block;
+    width: 100%;
+    thead {
+      display: block;
+      float: left;
+      th {
+        display: block;
+        text-align: left;
+
+        &:last-child {
+          border-bottom: none;
+        }
+      }
+    }
+    tbody {
+      display: block;
+      width: auto;
+      position: relative;
+      overflow-x: auto;
+      tr {
+        display: table-cell;
+        &:nth-child(odd) {
+          background: none;
+        }
+      }
+      td {
+        display: block;
+        text-align: center;
+      }
+    }
+    td {
+      padding: 20px 0.625em 0.625em 0.625em;
+      height: 60px;
+      vertical-align: middle;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 120px;
+      font-size: 13px;
+      text-overflow: ellipsis;
+    }
+    th {
+      padding: 20px 0.625em 0.625em 0.625em;
+      height: 60px;
+      vertical-align: middle;
+      box-sizing: border-box;
+      overflow-x: hidden;
+      overflow-y: auto;
+      width: 120px;
+      font-size: 13px;
+      text-overflow: ellipsis;
+    }
+    tr {
+      &:nth-child(even) {
+        background: transparent;
+      }
+      td {
+        &:nth-child(odd) {
+          background: var(--dark-background-color);
+          border-right: 1px solid var(--grey-color);
+        }
+        &:nth-child(even) {
+          border-right: 1px solid var(--grey-color);
+        }
+      }
+    }
+  }
+  .tableWrapper {
+    &:before {
+      content: "Yana kaydırın >";
+      display: block;
+      text-align: right;
+      font-size: 11px;
+      color: var(--white-color);
+      padding: 0 0 10px;
+    }
+  }
+}

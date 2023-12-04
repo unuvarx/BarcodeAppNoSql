@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import styles from "./findBarcodeInput.module.scss";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
-import { setBarcode, setPaid } from "@/redux/reducers/barcodeInputSlice";
+import { setBarcode, setPaid, setChangeMoney } from "@/redux/reducers/barcodeInputSlice";
 
 export default function FindBarcodeInput() {
   const dispatch = useDispatch();
@@ -18,6 +18,8 @@ export default function FindBarcodeInput() {
   const changePaid = (e) => {
     const value = e.target.value.replace(/\D/g, "");
     dispatch(setPaid(value));
+    dispatch(setChangeMoney(value - cost));
+    
   };
 
   return (

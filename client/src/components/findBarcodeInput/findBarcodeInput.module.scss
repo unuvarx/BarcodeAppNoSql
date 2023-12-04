@@ -12,7 +12,7 @@
     input {
       outline: none;
       width: 30rem;
-      height: 3.5rem;
+      
       font-size: 2rem;
       padding: 1rem;
       background-color: var(--red-color);
@@ -108,6 +108,7 @@
         background-color: var(--grey-color);
         color: red;
         pointer-events: none;
+        font-size: 3rem;
       }
     }
     .change {
