@@ -74,6 +74,7 @@ export default function Tr({ barcode, product, price, id }) {
   const forceUpdate = useForceUpdate();
   const changeCost = () => {
     costRef.current = Number(priceRef.current) * Number(amountRef.current);
+   
   };
 
   const increase = () => {

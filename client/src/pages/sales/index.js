@@ -17,13 +17,19 @@ const Sales = () => {
   const handleDeleteAll = () => {
     dispatch(setData([]));
   };
+
+
+  
+  const completeTheSale = () => {
+    console.log(data);
+  }
   return (
     <div className={styles.salesContainer}>
       <Navbar />
       <div className={styles.sale}>
         <FindBarcodeInput />
         <div className={styles.productsListContainer}>
-          <button>SATIŞI TAMAMLA(F8)</button>
+          <button onClick={completeTheSale}>SATIŞI TAMAMLA(F8)</button>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableWrapper}>
