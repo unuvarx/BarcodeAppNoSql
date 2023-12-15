@@ -1,6 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import styles from "./navbar.module.scss";
 import { MdOutlineSell, MdAutorenew } from "react-icons/md";
+import axios from "axios";
 import {
   AiOutlineHistory,
   AiOutlineUnorderedList,
@@ -9,22 +10,42 @@ import {
   AiOutlineMenu,
   AiOutlineClose,
 } from "react-icons/ai";
-
+import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { gsap } from "gsap";
+import { setIsAuth } from "@/redux/reducers/authSlice";
+import { useDispatch } from "react-redux";
+import { getCookie } from "@/lib/cookie";
 
 export default function Navbar() {
+  const dispatch = useDispatch();
   const [url, setUrl] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
   const [navbarControl, setNavbarControl] = useState(false);
   const navbarRef = useRef();
   const router = useRouter();
+  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     const currentUrl = router.asPath;
     setUrl(currentUrl);
   }, [router]);
+
+  const getUser = async () => {
+    const token = getCookie("key")
+    try {
+      const res = await axios.get(
+        `http://localhost:8800/api/user/${token}`
+      );
+      console.log(res);
+      setUserInfo(res.data);
+      dispatch(setIsAuth(true));
+    } catch (error) {
+      console.log(error);
+    }
+  };
   useEffect(() => {
+    getUser();
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };
@@ -41,23 +62,22 @@ export default function Navbar() {
     gsap.to(navbar, {
       x: 0,
       duration: 0.6,
-      opacity: 1, 
+      opacity: 1,
     });
   };
   const handleCloseNavbar = () => {
     const navbar = navbarRef.current;
     setNavbarControl(!navbarControl);
-    
+
     gsap.to(navbar, {
       x: -500,
       duration: 0.8,
-      opacity: 1, 
+      opacity: 1,
     });
   };
   const OpenAndClose = () => {
     if (windowWidth <= 918) {
       if (navbarControl) {
-        
         return <AiOutlineMenu onClick={handleOpenNavbar} />;
       } else {
         return <AiOutlineClose onClick={handleCloseNavbar} />;
@@ -67,30 +87,29 @@ export default function Navbar() {
       gsap.to(navbar, {
         x: 0,
         duration: 0.8,
-        opacity: 1, 
+        opacity: 1,
       });
 
-     
       return <></>;
     }
   };
   useEffect(() => {
     if (windowWidth <= 918) {
-      setNavbarControl(false)
+      setNavbarControl(false);
       const navbar = navbarRef.current;
       gsap.to(navbar, {
         x: 0,
         duration: 0.8,
-        opacity: 1, 
+        opacity: 1,
       });
     }
-  }, [windowWidth])
+  }, [windowWidth]);
   return (
     <div className={styles.navbarContainer}>
       <div className={styles.profile}>
         <OpenAndClose />
         <div>
-          <a href="/profile">Username</a>
+          <a href="/profile">{userInfo?.username ? userInfo.username : "-"}</a>
           <AiOutlineUser />
         </div>
       </div>

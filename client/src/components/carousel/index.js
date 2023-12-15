@@ -46,7 +46,7 @@ const Carousel = () => {
           </label>
           <label className={styles.card} htmlFor={styles.item2} id={styles.song2}>
             <img
-              src="https://images.unsplash.com/photo-1559386484-97dfc0e15539?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1234&q=80"
+              src="/images/carousel.png"
               alt="song"
             />
           </label>

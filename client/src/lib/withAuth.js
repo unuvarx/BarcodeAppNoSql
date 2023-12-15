@@ -1,21 +1,22 @@
 import { useEffect } from "react";
 import { useRouter } from "next/router";
-
+import {useSelector} from "react-redux";
+import { getCookie } from "@/lib/cookie";
 const withAuth = (Component) => {
   const AuthenticatedComponent = (props) => {
+    
+  
     const router = useRouter();
-    const isLoggedIn = true;
+    
+    const isAuth = true;
 
     useEffect(() => {
-      if (!isLoggedIn) {
+      if (!getCookie("key")) {
         router.replace("/auth/login");
       }
     }, []);
 
-    if (!isLoggedIn) {
-       
-      return null; // don't show content of page
-    }
+   
 
     return <Component {...props} />;
   };

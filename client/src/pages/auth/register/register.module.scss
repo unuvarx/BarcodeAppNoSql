@@ -27,7 +27,7 @@
       height: 17rem;
       object-fit: cover;
       border-radius: 100%;
-      background-color: var(--dark-background-color);
+      background-color: transparent;
       @media screen and (max-width: 832px) {
         width: 15rem;
         height: 15rem;
@@ -47,7 +47,7 @@
       margin-left: 2rem;
       display: flex;
       flex-direction: column;
-      background-color: var(--dark-background-color);
+      background-color: transparent;
       @media screen and (max-width: 832px) {
         margin-left: 0; 
         margin-top: 2rem;
@@ -56,11 +56,11 @@
         display: flex;
         flex-direction: column;
         margin-bottom: 1rem;
-        background-color: var(--dark-background-color);
+        background-color: transparent;
         span {
           font-size: 14px;
           color: var(--white-color);
-          background-color: var(--dark-background-color);
+          background-color: transparent;
         }
         input {
           outline: none;
@@ -69,9 +69,10 @@
           border: 2px solid var(--grey-color);
           height: 2rem;
           border-radius: 4px;
-          background-color: var(--dark-background-color);
+          background-color: transparent;
           width: 20rem;
           color: var(--white-color);
+          padding: 6px;
           @media screen and (max-width: 350px) {
             width: 100%;    
           }
@@ -93,12 +94,38 @@
         cursor: pointer;
       }
       a {
-        color: var(--red-color);
+        color: rgb(0, 140, 255);
         font-size: 12px;
         text-decoration: none;
         margin-top: 8px;
-        background-color: var(--dark-background-color);
+        background-color: transparent;
+      }
+      .warn {
+        background-color: transparent;
+        font-size: 13px;
+        position: relative;
+        color: red;
+       
+        .circleQuestion {
+          color: var(--grey-color);
+          cursor: pointer;
+        }
+        div {
+          width: 150px;
+          background-color: var(--grey-color);
+          position: absolute;
+          z-index: 10;
+          top: 20px;
+          left: 0;
+          border-radius: 16px;
+          padding: 8px;
+          color: var(--dark-background-color)
+        }
       }
     }
   }
+}
+.footer {
+  margin-top: 6rem;
+  padding-top:6rem;
 }

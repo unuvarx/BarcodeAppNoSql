@@ -72,6 +72,7 @@
             border-radius: 4px;
             background-color: var(--dark-background-color);
             width: 20rem;
+            padding: 6px;
             color: var(--white-color);
             @media screen and (max-width: 350px) {
               width: 100%;    
@@ -94,7 +95,7 @@
           cursor: pointer;
         }
         a {
-          color: var(--red-color);
+          color: rgb(0, 140, 255);;
           font-size: 12px;
           text-decoration: none;
           margin-top: 8px;

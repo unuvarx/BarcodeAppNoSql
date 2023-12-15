@@ -1,12 +1,11 @@
 import React, { useState, useEffect, useRef, useReducer } from "react";
-import styles from "./sales.module.scss";
+import styles from "./sales-history.module.scss";
 import withAuth from "@/lib/withAuth";
-import Navbar from "@/components/navbar/[index]";
+import Navbar from "@/components/navbar";
 import FindBarcodeInput from "@/components/findBarcodeInput";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
 import { setData } from "@/redux/reducers/barcodeInputSlice";
-
 
 import Footer from "@/components/footer";
 import Tr from "@/components/Tr";
@@ -19,18 +18,15 @@ const Sales = () => {
     dispatch(setData([]));
   };
 
+  
   const completeTheSale = () => {
     console.log(data);
   };
-  
   return (
     <div className={styles.salesContainer}>
       <Navbar />
       <div className={styles.sale}>
-        <FindBarcodeInput />
-        <div className={styles.productsListContainer}>
-          <button onClick={completeTheSale}>SATIŞI TAMAMLA(F8)</button>
-        </div>
+        <h1>Satışlarım</h1>
         <div className={styles.tableContainer}>
           <div className={styles.tableWrapper}>
             <table className={styles.flTable}>
@@ -46,26 +42,20 @@ const Sales = () => {
                   <th>Miktar</th>
                   <th>Fiyat</th>
                   <th>Tutar</th>
-                  <th className={styles.update}>
-                    <span>
-                      Kalıcı olarak <br /> güncellensin mi?
-                    </span>
-                  </th>
                 </tr>
               </thead>
               <tbody className={styles.tBody}>
                 {data?.map((item) => (
-                  <Tr
-                    key={item.id}
-                    id={item.id}
-                    barcode={item.barcode}
-                    product={item.product}
-                    price={item.price}
-                    cost={item.cost}
-                  />
+                  <tr>
+                    <td> </td>
+                    <td> {item.barcode} </td>
+                    <td> {item.product} </td>
+                    <td> {item?.amount} </td>
+                    <td>{item?.price} </td>
+                    <td> {item?.cost} </td>
+                  </tr>
                 ))}
                 <tr className={styles.hiddenTr}>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>
