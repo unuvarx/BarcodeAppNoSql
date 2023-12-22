@@ -5,7 +5,10 @@
 
     .productsListContainer {
       margin-top: 2rem;
-      button {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .completeBtn {
         background-color: #0080ff;
         border: none;
         padding: 1rem;
@@ -15,11 +18,35 @@
         color: #fff;
         transition: all 0.3s;
       }
-      button:hover {
+      .completeBtn:hover {
         background-color: #006edc;
+      }
+      .newCustomer {
+        background-color: rgb(47, 178, 47);
+        border: none;
+        padding: 1rem;
+        border-radius: 4px;
+        font-size: 1.4rem;
+        cursor: pointer;
+        color: #fff;
+        transition: all 0.3s;
+        @media screen and (max-width: 494px) {
+          margin-top: 1rem;
+        }
+        a {
+          background-color: transparent;
+          text-decoration: none;
+          color: #fff;
+        }
+      }
+      .newCustomer:hover {
+        background-color: rgb(34, 136, 34);
       }
       @media screen and (max-width: 1369px) {
         text-align: center;
+      }
+      @media screen and (max-width: 494px) {
+        flex-direction: column;
       }
     }
     .tableContainer {
@@ -156,7 +183,7 @@
             }
           }
           .hiddenTr {
-            display: none;
+            visibility: hidden;
           }
         }
       }

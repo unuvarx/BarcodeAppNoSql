@@ -5,9 +5,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { setCookie, removeCookie } from "@/lib/cookie";
 import axios from "axios";
-import { setNamesurname, setMail, setUsername, setPassword, setIsAuth } from "@/redux/reducers/authSlice";
-import { FaQuestionCircle } from "react-icons/fa";
 
+import { FaQuestionCircle } from "react-icons/fa";
 
 export default function Register() {
   const [circleQuestion, setCircleQuestion] = useState(false);
@@ -59,8 +58,7 @@ export default function Register() {
       setIsWarn(false);
       try {
         if (removeCookie("key")) {
-
-          removeCookie("key")
+          removeCookie("key");
         }
         const res = await axios.post(
           "http://localhost:8800/api/auth/register",
@@ -71,8 +69,8 @@ export default function Register() {
             password: userInformations.password,
           }
         );
-        setCookie("key", res.data.token, { expires: 1})
-        router.push("/sales")        
+        setCookie("key", res.data.token, { expires: 1 });
+        router.push("/sales");
       } catch (error) {
         console.log(error);
         setIsWarn(true);
@@ -139,8 +137,21 @@ export default function Register() {
             </label>
             {isWarn ? (
               <span className={styles.warn}>
-                Bilgileri tekrar kontrol edin! <FaQuestionCircle onMouseEnter={() => setCircleQuestion(true)} onMouseLeave={() => setCircleQuestion(false)}  className={styles.circleQuestion} /> 
-                {circleQuestion ? <div>Bu kullanıcı adından bir tane daha olabilir ve ya bu mail adresinden bir tane daha olabilir ve ya girilen iki şifre aynı olmayabilir.</div> : <></>}
+                Bilgileri tekrar kontrol edin!{" "}
+                <FaQuestionCircle
+                  onMouseEnter={() => setCircleQuestion(true)}
+                  onMouseLeave={() => setCircleQuestion(false)}
+                  className={styles.circleQuestion}
+                />
+                {circleQuestion ? (
+                  <div>
+                    Bu kullanıcı adından bir tane daha olabilir veya bu mail
+                    adresinden bir tane daha olabilir veya girilen iki şifre
+                    aynı olmayabilir.
+                  </div>
+                ) : (
+                  <></>
+                )}
               </span>
             ) : (
               <></>

@@ -13,39 +13,26 @@ import {
 import { useSelector } from "react-redux";
 import { useRouter } from "next/router";
 import { gsap } from "gsap";
-import { setIsAuth } from "@/redux/reducers/authSlice";
+import { getUser } from "@/redux/reducers/userSlice/[index]";
 import { useDispatch } from "react-redux";
-import { getCookie } from "@/lib/cookie";
 
 export default function Navbar() {
+  const { userInfo } = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
   const [url, setUrl] = useState("");
   const [windowWidth, setWindowWidth] = useState(0);
   const [navbarControl, setNavbarControl] = useState(false);
   const navbarRef = useRef();
   const router = useRouter();
-  const [userInfo, setUserInfo] = useState({});
 
   useEffect(() => {
     const currentUrl = router.asPath;
     setUrl(currentUrl);
   }, [router]);
 
-  const getUser = async () => {
-    const token = getCookie("key")
-    try {
-      const res = await axios.get(
-        `http://localhost:8800/api/user/${token}`
-      );
-      console.log(res);
-      setUserInfo(res.data);
-      dispatch(setIsAuth(true));
-    } catch (error) {
-      console.log(error);
-    }
-  };
   useEffect(() => {
-    getUser();
+    dispatch(getUser());
     const handleResize = () => {
       setWindowWidth(window.innerWidth);
     };

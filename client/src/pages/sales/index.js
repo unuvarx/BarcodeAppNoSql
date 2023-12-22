@@ -5,31 +5,53 @@ import Navbar from "@/components/navbar/[index]";
 import FindBarcodeInput from "@/components/findBarcodeInput";
 import { BsFillTrashFill } from "react-icons/bs";
 import { useSelector, useDispatch } from "react-redux";
-import { setData } from "@/redux/reducers/barcodeInputSlice";
-
+import {
+  setData,
+  setBarcode,
+  setPaid,
+  setCost,
+  setChangeMoney,
+} from "@/redux/reducers/barcodeInputSlice/[index]";
 
 import Footer from "@/components/footer";
 import Tr from "@/components/Tr";
+import Spinner from "@/components/spinner";
 
 const Sales = () => {
-  const { data, cost } = useSelector((state) => state.barcodeInputs);
+  const { data } = useSelector((state) => state.barcodeInputs);
   const dispatch = useDispatch();
 
   const handleDeleteAll = () => {
+    dispatch(setBarcode(""));
+    dispatch(setPaid(0));
+    dispatch(setCost(0));
+    dispatch(setChangeMoney(0));
     dispatch(setData([]));
   };
 
   const completeTheSale = () => {
-    console.log(data);
+    dispatch(setBarcode(""));
+    dispatch(setPaid(0));
+    dispatch(setCost(0));
+    dispatch(setChangeMoney(0));
+    dispatch(setData([]));
+
+    // satışı tamamladıktan sonra...
   };
-  
+
   return (
     <div className={styles.salesContainer}>
       <Navbar />
       <div className={styles.sale}>
         <FindBarcodeInput />
         <div className={styles.productsListContainer}>
-          <button onClick={completeTheSale}>SATIŞI TAMAMLA(F8)</button>
+          <button className={styles.completeBtn} onClick={completeTheSale}>
+            SATIŞI TAMAMLA(F8)
+          </button>
+
+          <button className={styles.newCustomer}>
+            <a href="http://localhost:3000/sales" target="_blank">Yeni Müşteri</a>
+          </button>
         </div>
         <div className={styles.tableContainer}>
           <div className={styles.tableWrapper}>
@@ -54,14 +76,15 @@ const Sales = () => {
                 </tr>
               </thead>
               <tbody className={styles.tBody}>
-                {data?.map((item) => (
+                {data?.map((item, index) => (
                   <Tr
-                    key={item.id}
-                    id={item.id}
-                    barcode={item.barcode}
-                    product={item.product}
+                    key={index}
+                    id={item._id}
+                    productBarcode={item.barcode}
+                    product={item.productName}
                     price={item.price}
-                    cost={item.cost}
+                    amount={item?.amount}
+                    cost={item?.cost}
                   />
                 ))}
                 <tr className={styles.hiddenTr}>

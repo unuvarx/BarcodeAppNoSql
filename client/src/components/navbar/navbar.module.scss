@@ -34,6 +34,7 @@
     align-items: center;
     justify-content: space-between;
     border-radius: 4px;
+    height: -webkit-fill-available;
 
     @media screen and (max-width: 919px) {
       flex-direction: column;
@@ -43,6 +44,11 @@
       justify-content: flex-start;
       position: absolute;
       z-index: 999999999;
+    }
+    @media screen and (max-width: 494px) {
+      
+      width: -webkit-fill-available;
+      
     }
     .img {
       display: flex;

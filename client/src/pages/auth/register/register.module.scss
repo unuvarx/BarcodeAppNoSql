@@ -20,7 +20,6 @@
     justify-content: center;
     @media screen and (max-width: 832px) {
       flex-direction: column;
-
     }
     img {
       width: 17rem;
@@ -31,16 +30,14 @@
       @media screen and (max-width: 832px) {
         width: 15rem;
         height: 15rem;
-
       }
       @media screen and (max-width: 832px) {
         width: 10rem;
         height: 10rem;
-
       }
       @media screen and (max-width: 350px) {
-        width: 5rem;    
-        height: 5rem;    
+        width: 5rem;
+        height: 5rem;
       }
     }
     .inputsContainer {
@@ -49,7 +46,7 @@
       flex-direction: column;
       background-color: transparent;
       @media screen and (max-width: 832px) {
-        margin-left: 0; 
+        margin-left: 0;
         margin-top: 2rem;
       }
       label {
@@ -74,9 +71,8 @@
           color: var(--white-color);
           padding: 6px;
           @media screen and (max-width: 350px) {
-            width: 100%;    
+            width: 100%;
           }
-          
         }
         input:focus {
           border-color: var(--red-color);
@@ -105,10 +101,12 @@
         font-size: 13px;
         position: relative;
         color: red;
-       
+        display: flex;
+        align-items: center;
         .circleQuestion {
           color: var(--grey-color);
           cursor: pointer;
+          margin-left: 4px;
         }
         div {
           width: 150px;
@@ -119,7 +117,7 @@
           left: 0;
           border-radius: 16px;
           padding: 8px;
-          color: var(--dark-background-color)
+          color: var(--dark-background-color);
         }
       }
     }
@@ -127,5 +125,5 @@
 }
 .footer {
   margin-top: 6rem;
-  padding-top:6rem;
+  padding-top: 6rem;
 }

@@ -2,12 +2,16 @@ import React, { useState } from "react";
 import styles from "./login.module.scss";
 import Footer from "@/components/footer";
 import axios from "axios";
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useRouter } from "next/router";
 import { setCookie, removeCookie } from "@/lib/cookie";
+import { FaQuestionCircle } from "react-icons/fa";
 
-import { setUsername, setPassword, setIsAuth, setMail, setNamesurname } from "@/redux/reducers/authSlice";
+
 export default function Login() {
+  
+  const [isWarn, setIsWarn] = useState(false);
+  const [circleQuestion, setCircleQuestion] = useState(false);
   const [userInformations, setUserInformations] = useState({
     username: "",
     password: "",
@@ -30,16 +34,17 @@ export default function Login() {
   const signIn = async () => {
     try {
       if (removeCookie("key")) {
-        removeCookie("key")
+        removeCookie("key");
       }
       const res = await axios.post("http://localhost:8800/api/auth/login", {
         username: userInformations.username,
         password: userInformations.password,
       });
-      setCookie("key", res.data.details.token, { expires: 1})
+      setCookie("key", res.data.details.token, { expires: 1 });
       router.push("/sales");
     } catch (error) {
-      console.log(error);
+      setIsWarn(true)
+      
     }
   };
 
@@ -69,6 +74,25 @@ export default function Login() {
                 placeholder="Şifrenizi giriniz"
               />
             </label>
+            {isWarn ? (
+              <span className={styles.warn}>
+                Bilgileri tekrar kontrol edin!{" "}
+                <FaQuestionCircle
+                  onMouseEnter={() => setCircleQuestion(true)}
+                  onMouseLeave={() => setCircleQuestion(false)}
+                  className={styles.circleQuestion}
+                />
+                {circleQuestion ? (
+                  <div>
+                    Kullanıcı adınız veya şifreniz hatalı.
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </span>
+            ) : (
+              <></>
+            )}
             <button onClick={signIn}>Giriş Yap</button>
             <a href="/auth/register">Üye değil misiniz? Kayıt Ol</a>
           </div>
