@@ -8,6 +8,7 @@ const cookieParser = require("cookie-parser");
 
 const AuthRoute = require("./routes/AuthRoute");
 const UserRoute = require("./routes/UserRoute");
+const ProductsRoute = require("./routes/ProductsRoute");
 
 dotenv.config();
 
@@ -34,6 +35,7 @@ app.use(bodyParser.json());
 
 app.use("/api/auth", AuthRoute);
 app.use("/api/user", UserRoute);
+app.use("/api/product", ProductsRoute);
 
 app.listen(process.env.PORT, () => {
   connect();

@@ -30,6 +30,13 @@ const UserModel = new Schema(
     token: {
       type: String,
     },
+    products: [
+      {
+        barcode: Number,
+        productName: String,
+        price: Number,
+      }
+    ]
   },
   { timestamps: true }
 );
