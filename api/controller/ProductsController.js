@@ -3,7 +3,6 @@ const User = require("../models/UserModel");
 const addProduct = async (req, res, next) => {
   try {
     let product = req.body;
-    console.log(product);
     const user = await User.findByIdAndUpdate(
       req.params.id,
       {
@@ -30,8 +29,26 @@ const getProducts = async (req, res, next) => {
   }
 };
 
+const addSalesHistory = async (req, res, next) => {
+  try {
+    let history = req.body;
+    const user = await User.findByIdAndUpdate(
+      req.params.id,
+      {
+        $push: {
+          salesHistory: history,
+        },
+      },
+      { new: true }
+    );
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
 module.exports = {
   addProduct,
   getProducts,
-
+  addSalesHistory,
 };

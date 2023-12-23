@@ -35,8 +35,25 @@ const UserModel = new Schema(
         barcode: Number,
         productName: String,
         price: Number,
-      }
-    ]
+      },
+    ],
+    salesHistory: [
+      [
+        {
+          time: { type: Date, default: Date.now },
+          totalCost: Number,
+          products: [
+            {
+              barcode: Number,
+              productName: String,
+              amount: Number,
+              cost: Number,
+              price: Number,
+            },
+          ],
+        },
+      ],
+    ],
   },
   { timestamps: true }
 );
