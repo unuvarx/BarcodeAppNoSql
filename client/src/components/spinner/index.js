@@ -5,7 +5,7 @@ export default function Spinner() {
   return (
     <div className={styles.spinner}>
       <div className={styles.container}>
-        <img src="/images/logo.jpg" alt="" />
+        <img src="/images/logo.png" alt="" />
       </div>
     </div>
   );

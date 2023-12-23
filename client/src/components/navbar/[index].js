@@ -102,7 +102,7 @@ export default function Navbar() {
       </div>
       <div className={styles.navbar} ref={navbarRef}>
         <div className={styles.img}>
-          <img src="/images/logo.jpg" alt="" />
+          <img src="/images/logo.png" alt="" />
         </div>
         <div className={styles.pagesContainer}>
           <div

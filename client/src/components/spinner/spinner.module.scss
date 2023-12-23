@@ -14,10 +14,12 @@
     background-color: transparent;
     width: 10rem;
     animation: spin 1.5s linear infinite;
-
+    
     img {
+      background-color: transparent;
       width: 100%;
       opacity: 1; 
+      border-radius: 8px;
     }
   }
 }

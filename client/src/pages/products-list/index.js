@@ -12,7 +12,7 @@ import Tr from "@/components/Tr";
 import Navbar from "@/components/navbar/[index]";
 
 const ProductsList= () => {
-  const { userInfo, cost } = useSelector((state) => state.user);
+  const { userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
   
@@ -41,9 +41,6 @@ const ProductsList= () => {
                   </tr>
                 ))}
                 <tr className={styles.hiddenTr}>
-                  <td></td>
-                  <td></td>
-                  <td></td>
                   <td></td>
                   <td></td>
                   <td></td>

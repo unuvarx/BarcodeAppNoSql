@@ -18,7 +18,8 @@
       width: 150px;
       height: 75px;
       border-radius: 8px;
-      object-fit: fill;
+      object-fit: cover;
+      background-color: transparent;
     }
     div {
       background-color: var(--dark-background-color);

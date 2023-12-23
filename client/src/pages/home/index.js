@@ -109,7 +109,7 @@ export default function Home() {
      
     
       <div className={styles.homeHead}>
-        <img src="/images/logo.jpg" alt="" />
+        <img src="/images/logo.png" alt="" />
         <div>
           <button
             className={styles.register}

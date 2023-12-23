@@ -12,31 +12,43 @@ import {
   setCost,
   setChangeMoney,
 } from "@/redux/reducers/barcodeInputSlice/[index]";
+import axios from "axios";
 
 import Footer from "@/components/footer";
 import Tr from "@/components/Tr";
 import Spinner from "@/components/spinner";
 
 const Sales = () => {
-  const { data } = useSelector((state) => state.barcodeInputs);
+  const { data, cost } = useSelector((state) => state.barcodeInputs);
+  const { userInfo } = useSelector((state) => state.user);
   const dispatch = useDispatch();
 
-  const handleDeleteAll = () => {
+  const reset = () => {
     dispatch(setBarcode(""));
     dispatch(setPaid(0));
     dispatch(setCost(0));
     dispatch(setChangeMoney(0));
     dispatch(setData([]));
   };
+  const handleDeleteAll = () => {
+    reset();
+  };
 
-  const completeTheSale = () => {
-    dispatch(setBarcode(""));
-    dispatch(setPaid(0));
-    dispatch(setCost(0));
-    dispatch(setChangeMoney(0));
-    dispatch(setData([]));
+  const completeTheSale = async () => {
+    try {
+      const res = await axios.put(
+        `http://localhost:8800/api/product/history/${userInfo._id}`,
+        {
+          totalCost: cost,
+          products: data,
+        }
+      );
+      console.log(res);
+    } catch (error) {
+      console.warn(error);
+    }
+     reset();
 
-    // satışı tamamladıktan sonra...
   };
 
   return (
@@ -50,7 +62,9 @@ const Sales = () => {
           </button>
 
           <button className={styles.newCustomer}>
-            <a href="http://localhost:3000/sales" target="_blank">Yeni Müşteri</a>
+            <a href="http://localhost:3000/sales" target="_blank">
+              Yeni Müşteri
+            </a>
           </button>
         </div>
         <div className={styles.tableContainer}>
