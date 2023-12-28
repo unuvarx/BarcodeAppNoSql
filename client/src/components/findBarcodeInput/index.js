@@ -9,23 +9,23 @@ import {
   setData,
   addData,
 } from "@/redux/reducers/barcodeInputSlice/[index]";
-
+import { useRouter } from "next/router";
 export default function FindBarcodeInput() {
   const dispatch = useDispatch();
-
+  const router = useRouter();
   const barcodeInputsState = useSelector((state) => state.barcodeInputs);
   const { barcode, paid, cost, changeMoney, data } = barcodeInputsState;
 
-  const userInfo = useSelector((state) => state.user.userInfo);
+  const { userInfo, numberOfTimesRemaining } = useSelector(
+    (state) => state.user
+  );
 
   const changePaid = (e) => {
-  
-    
     const regex = /^[0-9]*(\.[0-9]*)?$/;
     const inputValue = e.target.value;
     if (regex.test(inputValue)) {
       dispatch(setPaid(inputValue));
-    dispatch(setChangeMoney(inputValue - cost));
+      dispatch(setChangeMoney(inputValue - cost));
     }
   };
 
@@ -34,39 +34,47 @@ export default function FindBarcodeInput() {
   };
 
   const handleSearch = async () => {
-    await new Promise((resolve) => setTimeout(resolve, 125));
-    const findedProduct = userInfo?.products.find(
-      (product) => product.barcode === Number(barcode)
-    );
-
-   
-    if (findedProduct) {
-      let isSameProduct = data.find((item) => item.barcode === Number(barcode));
-      if (isSameProduct) {
-
-        const newData = data.map((item) =>
-          item._id === isSameProduct._id
-            ? {
-                ...item,
-                amount: item.amount + 1,
-                cost: (item.amount + 1) * item.price,
-              }
-            : { ...item }
+    try {
+      if (numberOfTimesRemaining > 0) {
+        await new Promise((resolve) => setTimeout(resolve));
+        const findedProduct = userInfo?.products.find(
+          (product) => product.barcode === Number(barcode)
         );
 
-        dispatch(setData(newData));
-      } else {
-        const newData = {
-          ...findedProduct,
-          cost: findedProduct.price,
-          amount: 1,
-          isChecked: false,
-        };
-        dispatch(addData(newData));
-      }
-    }
+        if (findedProduct) {
+          let isSameProduct = data.find(
+            (item) => item.barcode === Number(barcode)
+          );
+          if (isSameProduct) {
+            const newData = data.map((item) =>
+              item._id === isSameProduct._id
+                ? {
+                    ...item,
+                    amount: item.amount + 1,
+                    cost: (item.amount + 1) * item.price,
+                  }
+                : { ...item }
+            );
 
-    dispatch(setBarcode(""));
+            dispatch(setData(newData));
+          } else {
+            const newData = {
+              ...findedProduct,
+              cost: findedProduct.price,
+              amount: 1,
+              isChecked: false,
+            };
+            dispatch(addData(newData));
+          }
+        }
+
+        dispatch(setBarcode(""));
+      } else {
+        router.push("/buy-lisence");
+      }
+    } catch (error) {
+      console.warn(error);
+    }
   };
 
   const changeBarcode = (e) => {

@@ -13,14 +13,18 @@ import {
   setChangeMoney,
 } from "@/redux/reducers/barcodeInputSlice/[index]";
 import axios from "axios";
+import { useRouter } from "next/router";
 
 import Footer from "@/components/footer";
 import Tr from "@/components/Tr";
 import Spinner from "@/components/spinner";
 
 const Sales = () => {
+  const router = useRouter();
   const { data, cost } = useSelector((state) => state.barcodeInputs);
-  const { userInfo } = useSelector((state) => state.user);
+  const { userInfo, numberOfTimesRemaining } = useSelector(
+    (state) => state.user
+  );
   const dispatch = useDispatch();
 
   const reset = () => {
@@ -33,22 +37,24 @@ const Sales = () => {
   const handleDeleteAll = () => {
     reset();
   };
-
   const completeTheSale = async () => {
-    try {
-      const res = await axios.put(
-        `http://localhost:8800/api/product/history/${userInfo._id}`,
-        {
-          totalCost: cost,
-          products: data,
-        }
-      );
-      console.log(res);
-    } catch (error) {
-      console.warn(error);
+    console.log("saniye", numberOfTimesRemaining);
+    if (numberOfTimesRemaining > 0) {
+      try {
+        const res = await axios.put(
+          `http://localhost:8800/api/product/history/${userInfo._id}`,
+          {
+            totalCost: cost,
+            products: data,
+          }
+        );
+        reset();
+      } catch (error) {
+        console.warn(error);
+      }
+    } else {
+      router.push("/buy-lisence");
     }
-     reset();
-
   };
 
   return (

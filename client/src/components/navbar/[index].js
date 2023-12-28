@@ -145,17 +145,7 @@ export default function Navbar() {
             <AiOutlineInsertRowAbove />
             <span>Ürün Ekle</span>
           </div>
-          <div
-            onClick={() => {
-              router.push("/update-product");
-            }}
-            className={
-              url === "/update-product" ? styles.active : styles.deActive
-            }
-          >
-            <MdAutorenew />
-            <span>Ürün Güncelle</span>
-          </div>
+          
         </div>
       </div>
     </div>

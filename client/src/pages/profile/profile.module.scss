@@ -1,0 +1,119 @@
+.profileContainer {
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+ 
+    h1 {
+        color: var(--white-color);
+        text-align: center;
+        padding: 2rem;
+        font-size: 3rem;
+      }
+  
+  .informations {
+    padding: 2.5rem 5rem;
+    background-color: var(--dark-color);
+    width: 50%;
+    border-radius: 8px;
+    .labels {
+      display: flex;
+      flex-direction: column;
+      margin-bottom: 16px;
+      background-color: transparent;
+      label {
+        background-color: transparent;
+        color: var(--white-color);
+      }
+      .key {
+        display: flex;
+        align-items: center;
+        svg {
+            margin-left: 4px;
+            background-color: transparent;
+            color: var(--white-color);
+        }
+      }
+      div {
+        padding: 12px;
+        border: none;
+        border-radius: 4px;
+        background-color: var(--grey-color);
+        font-size: 17px;
+        overflow-y: auto;
+      }
+      .lisence {
+        background-color: rgb(0, 0, 0);
+        color: #fff;
+        font-weight: bold;
+
+        a {
+          background-color: transparent;
+          color: rgb(0, 72, 255);
+        }
+      }
+      .time {
+        background-color: var(--red-color);
+        color: #fff;
+        font-weight: bold;
+      }
+    }
+    .buttons {
+      background-color: transparent;
+      display: flex;
+      
+     
+      align-items: center;
+      justify-content: space-between;
+      margin-top: 3rem;
+      @media screen and (max-width: 544px) {
+        flex-direction: column;
+      }
+      .out {
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+        border-radius: 4px;
+        background-color: red;
+        cursor: pointer;
+        span {
+          background-color: transparent;
+          color: #fff;
+          font-size: 15px;
+          margin-right: 4px;
+        }
+        svg {
+          background-color: transparent;
+          color: var(--white-color);
+        }
+      }
+      .out:hover {
+        background-color: rgba(255, 0, 0, 0.55);
+      }
+      .buyLisence {
+        border: none;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.4rem;
+        border-radius: 4px;
+        background-color: green;
+        cursor: pointer;
+        font-size: 15px;
+        color: #fff;
+        font-weight: bold;
+        text-decoration: none;
+        @media screen and (max-width: 544px) {
+            margin-top: 1rem;
+          }
+    }
+    .buyLisence:hover {
+          background-color: rgba(0, 128, 0, 0.582);
+
+      }
+    }
+  }
+}

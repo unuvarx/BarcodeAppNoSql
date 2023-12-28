@@ -1,0 +1,22 @@
+.spinner {
+    background-color: var(--grey-color);
+    padding: 0.2rem;
+    border-radius: 50%;    
+    animation: spin 1.5s linear infinite;
+    .container {
+        height: 3rem;
+        color: yellow;
+        width: 3rem;
+        background-color: var(--dark-color);  
+        animation: spin 1.5s linear infinite;
+    }
+}
+
+@keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
