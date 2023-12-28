@@ -17,10 +17,13 @@ const register = async (req, res, next) => {
     const hash = bcrypt.hashSync(req.body.password, salt);
 
     const secretKey = generateSecretKey();
+    const currentDate = new Date();    
+    const sevenDaysLater = new Date(currentDate.getTime() + 7 * 24 * 60 * 60 * 1000);
     const newUser = new User({
       ...req.body,
       password: hash,
       token: secretKey,
+      remainingUsageTime: sevenDaysLater,
     });
 
     await newUser.save();

@@ -30,6 +30,9 @@ const UserModel = new Schema(
     token: {
       type: String,
     },
+    remainingUsageTime: {
+      type: Date,
+    },
     products: [
       {
         barcode: Number,
