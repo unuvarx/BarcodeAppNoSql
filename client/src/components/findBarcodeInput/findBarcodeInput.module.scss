@@ -1,7 +1,7 @@
 .container {
   display: flex;
   justify-content: space-between;
-  
+
   @media screen and (max-width: 1369px) {
     flex-direction: column;
     align-items: center;
@@ -12,7 +12,7 @@
     input {
       outline: none;
       width: 30rem;
-      
+
       font-size: 2rem;
       padding: 1rem;
       background-color: var(--red-color);
@@ -118,5 +118,28 @@
         pointer-events: none;
       }
     }
+  }
+  .modal {
+    position: absolute;
+    z-index: 9504694565406;
+   padding: 3rem;
+   margin: 3rem;
+    background-color: var(--grey-color);
+    opacity: 0.95;
+    top: 0;
+    left: 0;
+    width: -webkit-fill-available;
+    border-radius: 8px;
+    .exit{
+      cursor: pointer;
+      svg {
+        position: absolute;
+        right: 0;
+        top: 0;
+        background-color: transparent;
+      }
+
+    }
+   
   }
 }

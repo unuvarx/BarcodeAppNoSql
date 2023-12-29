@@ -1,32 +1,54 @@
-import React, { useState, useEffect, useRef, useReducer } from "react";
+
+import React, { useState } from "react";
 import styles from "./sales-history.module.scss";
 import withAuth from "@/lib/withAuth";
-import { useRouter } from 'next/router';
+import { useRouter } from "next/router";
 
 import FindBarcodeInput from "@/components/findBarcodeInput";
 import { BsFillTrashFill } from "react-icons/bs";
-import { useSelector, useDispatch } from "react-redux";
-import { setData } from "@/redux/reducers/barcodeInputSlice/[index]";
+import { useSelector } from "react-redux";
 import { MdCallMissedOutgoing } from "react-icons/md";
-
 import Footer from "@/components/footer";
-import Tr from "@/components/Tr";
 import Navbar from "@/components/navbar/[index]";
 import { formatDate } from "@/redux/reducers/userSlice/[index]";
 
 const SalesHistory = () => {
-  const dispatch = useDispatch();
   const { userInfo } = useSelector((state) => state.user);
+  const [currentPage, setCurrentPage] = useState(1);
+  const pageSize = 10;
+
   const router = useRouter();
   const goHistory = (history) => {
-    router.push(`/sales-history-detail/${history[0]._id}`);
+    router.push(`/sales-history-detail/${history._id}`);
   };
 
+  const renderPaginationButtons = () => {
+    const pageCount = Math.ceil(
+      (userInfo.salesHistory ? userInfo.salesHistory.flat().length : 0) /
+        pageSize
+    );
 
-  
-  const baseDate = new Date('2023-12-26T01:33:57.101+00:00');
-  const sevenDaysLater = new Date(baseDate.getTime() + 7 * 24 * 60 * 60 * 1000);
+    const buttons = [];
+    for (let i = 1; i <= pageCount; i++) {
+      buttons.push(
+        <button
+          key={i}
+          onClick={() => setCurrentPage(i)}
+          className={currentPage === i ? styles.activePage : ""}
+        >
+          {i}
+        </button>
+      );
+    }
 
+    return buttons;
+  };
+
+  const currentPageProducts = userInfo.salesHistory
+    ? userInfo.salesHistory
+        .flat()
+        .slice((currentPage - 1) * pageSize, currentPage * pageSize)
+    : [];
 
   return (
     <div className={styles.salesContainer}>
@@ -45,32 +67,29 @@ const SalesHistory = () => {
                 </tr>
               </thead>
               <tbody className={styles.tBody}>
-                {userInfo.salesHistory?.map((history) =>
-                  history.map((item, index) => (
-                    <tr key={index}>
-                      <td>
-                        <button
-                          onClick={() => goHistory(history)}
-                          className={styles.goSale}
-                        >
-                          <MdCallMissedOutgoing size={30} color={"white"} />
-                        </button>
-                      </td>
-                      <td>{formatDate(item?.time)} --- {formatDate(sevenDaysLater.toISOString())} </td>
-                      <td className={styles.amountofProducts}>{item.products.length}</td>
-                      <td className={styles.totalCost}>{item?.totalCost}₺</td>
-                    </tr>
-                  ))
-                )}
-                <tr className={styles.hiddenTr}>
-                  <td></td>
-                  <td></td>
-                  <td></td>
-                </tr>
+                {currentPageProducts.map((item) => (
+                  <tr key={item._id}>
+                    <td>
+                      <button
+                        onClick={() => goHistory(item)}
+                        className={styles.goSale}
+                      >
+                        <MdCallMissedOutgoing size={30} color={"white"} />
+                      </button>
+                    </td>
+                    <td>{formatDate(item?.time)}</td>
+                    <td className={styles.amountofProducts}>
+                      {item.products.length}
+                    </td>
+                    <td className={styles.totalCost}>{item?.totalCost}₺</td>
+                  </tr>
+                ))}
               </tbody>
-              <tbody></tbody>
             </table>
           </div>
+        </div>
+        <div className={styles.pagination}>
+          <div>{renderPaginationButtons()}</div>
         </div>
       </div>
       <Footer />

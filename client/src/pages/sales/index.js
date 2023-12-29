@@ -37,20 +37,41 @@ const Sales = () => {
   const handleDeleteAll = () => {
     reset();
   };
+
+  const updateProduct = async (product) => {
+    try {
+      await axios.put(
+        `http://localhost:8800/api/product/update-price/${userInfo._id}/${product._id}`,
+
+        {
+          price: product.price,
+        }
+      );
+    } catch (error) {
+      console.warn(error);
+    }
+  };
   const completeTheSale = async () => {
-    console.log("saniye", numberOfTimesRemaining);
     if (numberOfTimesRemaining > 0) {
-      try {
-        const res = await axios.put(
-          `http://localhost:8800/api/product/history/${userInfo._id}`,
-          {
-            totalCost: cost,
-            products: data,
-          }
-        );
-        reset();
-      } catch (error) {
-        console.warn(error);
+      if (cost > 0) {
+        try {
+          await axios.put(
+            `http://localhost:8800/api/product/history/${userInfo._id}`,
+            {
+              totalCost: cost,
+              products: data,
+            }
+          );
+
+          data.map((product) => {
+            if (product.isChecked) {
+              updateProduct(product);
+            }
+          });
+          reset();
+        } catch (error) {
+          console.warn(error);
+        }
       }
     } else {
       router.push("/buy-lisence");

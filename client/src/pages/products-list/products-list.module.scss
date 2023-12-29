@@ -230,6 +230,61 @@
           }
         }
       }
+      .pagination {
+        padding: 1rem;
+        margin: 2rem 0 6rem 0;
+        background-color: var(--dark-color);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        div {
+          max-width: 350px;
+          display: flex;
+          align-items: center;
+  
+          padding: 0.5rem;
+          overflow-x: auto;
+          white-space: nowrap;
+          border-radius: 8px;
+          button {
+            border-radius: 50%;
+            border: none;
+            background-color: var(--red-color);
+            color: var(--white-color);
+            font-weight: bold;
+            width: 20px;
+            height: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 4px;
+            padding: 16px;
+            cursor: pointer;
+          }
+          button:hover {
+            background-color: var(--dark-color);
+          }
+          .activePage {
+            background-color: var(--dark-color);
+          }
+        }
+  
+        div::-webkit-scrollbar {
+          cursor: pointer;
+         height: 10px;
+        }
+  
+        div::-webkit-scrollbar-track {
+          background-color: #fff;
+        }
+  
+        div::-webkit-scrollbar-thumb {
+          background-color: var(--red-color);
+          border-radius: 8px;
+          cursor: pointer;
+        }
+      }
     }
   }
   

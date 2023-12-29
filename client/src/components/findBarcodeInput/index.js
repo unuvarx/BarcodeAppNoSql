@@ -2,6 +2,8 @@ import React, { useState, useEffect } from "react";
 import styles from "./findBarcodeInput.module.scss";
 import { AiOutlineSearch } from "react-icons/ai";
 import { useDispatch, useSelector } from "react-redux";
+import { IoClose } from "react-icons/io5";
+
 import {
   setBarcode,
   setPaid,
@@ -9,10 +11,14 @@ import {
   setData,
   addData,
 } from "@/redux/reducers/barcodeInputSlice/[index]";
+
 import { useRouter } from "next/router";
+import AddProduct from "../addProduct";
 export default function FindBarcodeInput() {
   const dispatch = useDispatch();
   const router = useRouter();
+  const [isThere, setIsThere] = useState(true);
+
   const barcodeInputsState = useSelector((state) => state.barcodeInputs);
   const { barcode, paid, cost, changeMoney, data } = barcodeInputsState;
 
@@ -33,6 +39,7 @@ export default function FindBarcodeInput() {
     handleSearch();
   };
 
+
   const handleSearch = async () => {
     try {
       if (numberOfTimesRemaining > 0) {
@@ -40,8 +47,8 @@ export default function FindBarcodeInput() {
         const findedProduct = userInfo?.products.find(
           (product) => product.barcode === Number(barcode)
         );
-
         if (findedProduct) {
+          
           let isSameProduct = data.find(
             (item) => item.barcode === Number(barcode)
           );
@@ -55,7 +62,6 @@ export default function FindBarcodeInput() {
                   }
                 : { ...item }
             );
-
             dispatch(setData(newData));
           } else {
             const newData = {
@@ -66,8 +72,10 @@ export default function FindBarcodeInput() {
             };
             dispatch(addData(newData));
           }
+        } else {
+         
+          setIsThere(false);
         }
-
         dispatch(setBarcode(""));
       } else {
         router.push("/buy-lisence");
@@ -86,7 +94,11 @@ export default function FindBarcodeInput() {
       handleSearch();
     }
   }, [barcode]);
+  
 
+  const handleIsThere = () => {
+    setIsThere(true);
+  }
   return (
     <div className={styles.container}>
       <div className={styles.barcode}>
@@ -116,6 +128,16 @@ export default function FindBarcodeInput() {
           <input readOnly={true} value={changeMoney} type="text" />
         </div>
       </div>
+      {!isThere ? (
+        <div className={styles.modal}>
+          <span onClick={handleIsThere} className={styles.exit}>
+            <IoClose size={50} />
+          </span>
+          <AddProduct control={setIsThere} />
+        </div>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

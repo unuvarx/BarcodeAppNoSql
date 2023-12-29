@@ -47,6 +47,8 @@ export const getUser = () => async (dispatch) => {
   }
 };
 
+
+
 export const formatDate = (date) => {
   const rawDateFromDatabase = date;
   const dateObject = new Date(rawDateFromDatabase);
