@@ -4,6 +4,7 @@ const {
   addProduct,
   getProducts,
   addSalesHistory,
+  updatePrice,
 } = require("../controller/ProductsController");
 
 
@@ -30,6 +31,7 @@ const {
 router.put("/:id", addProduct)
 router.get("/:id", getProducts);
 router.put("/history/:id", addSalesHistory),
+router.put("/update-price/:id/:productIdToUpdate", updatePrice);
 
 
 module.exports = router;
