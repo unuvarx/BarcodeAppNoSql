@@ -23,13 +23,64 @@ const updatePrice = async (req, res, next) => {
     const user = await User.findById(req.params.id);
     const products = user.products;
 
-    const indexToUpdate = products.findIndex(item => item._id.equals(req.params.productIdToUpdate));
+    const indexToUpdate = products.findIndex((item) =>
+      item._id.equals(req.params.productIdToUpdate)
+    );
     if (indexToUpdate === -1) {
-      return res.status(404).json({ message: 'Ürün bulunamadı' });
+      return res.status(404).json({ message: "Ürün bulunamadı" });
     }
     products[indexToUpdate].price = updatedPrice;
     await user.save();
     res.status(200).json(products[indexToUpdate]);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const updateProduct = async (req, res, next) => {
+  try {
+    const { price, productName, barcode } = req.body;
+    const user = await User.findById(req.params.id);
+    const products = user.products;
+
+    const indexToUpdate = products.findIndex((item) =>
+      item._id.equals(req.params.productIdToUpdate)
+    );
+    if (indexToUpdate === -1) {
+      return res.status(404).json({ message: "Ürün bulunamadı" });
+    }
+
+    if (price !== undefined) {
+      products[indexToUpdate].price = price;
+    }
+    if (productName !== undefined) {
+      products[indexToUpdate].productName = productName;
+    }
+    if (barcode !== undefined) {
+      products[indexToUpdate].barcode = barcode;
+    }
+    await user.save();
+    res.status(200).json(products[indexToUpdate]);
+  } catch (error) {
+    next(error);
+  }
+};
+
+const deleteProduct = async (req, res, next) => {
+  try {
+    const user = await User.findById(req.params.id);
+    const products = user.products;
+
+    const indexToDelete = products.findIndex((item) =>
+      item._id.equals(req.params.productIdToDelete)
+    );
+    if (indexToDelete === -1) {
+      return res.status(404).json({ message: "not fount this product" });
+    }
+
+    products.splice(indexToDelete, 1);
+    await user.save();
+    res.status(200).json({ message: "product delete succesfully" });
   } catch (error) {
     next(error);
   }
@@ -69,4 +120,6 @@ module.exports = {
   getProducts,
   addSalesHistory,
   updatePrice,
+  updateProduct,
+  deleteProduct,
 };
