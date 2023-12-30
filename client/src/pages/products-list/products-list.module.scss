@@ -1,290 +1,326 @@
-.salesContainer {
-    .sale {
-      padding: 8px;
-      margin-top: 2rem;
-  
-      h1 {
-        color: var(--white-color);
+.sale {
+  padding: 8px;
+  margin-top: 2rem;
+
+  h1 {
+    color: var(--white-color);
+    text-align: center;
+    padding: 2rem;
+    font-size: 3rem;
+  }
+  .productsListContainer {
+    margin-top: 2rem;
+
+    @media screen and (max-width: 1369px) {
+      text-align: center;
+    }
+  }
+  .tableContainer {
+    margin: 2rem 0 6rem 0;
+
+    .tableWrapper {
+      box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
+    }
+    .flTable {
+      border-radius: 5px;
+      font-size: 12px;
+      font-weight: normal;
+      border: none;
+      border-collapse: collapse;
+      width: 100%;
+      max-width: 100%;
+      white-space: nowrap;
+
+      td {
         text-align: center;
-        padding: 2rem;
-        font-size: 3rem;
+        padding: 8px;
+        font-size: 20px;
       }
-      .productsListContainer {
-        margin-top: 2rem;
-        
-        @media screen and (max-width: 1369px) {
-          text-align: center;
-        }
-      }
-      .tableContainer {
-        margin: 2rem 0 6rem 0;
-  
-        
-        .tableWrapper {
-          box-shadow: 0px 35px 50px rgba(0, 0, 0, 0.2);
-        }
-        .flTable {
-          border-radius: 5px;
-          font-size: 12px;
-          font-weight: normal;
+      .deleteBtn {
+        button {
+          background-color: red;
           border: none;
-          border-collapse: collapse;
-          width: 100%;
-          max-width: 100%;
-          white-space: nowrap;
-  
-          td {
-            text-align: center;
-            padding: 8px;
-            font-size: 12px;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 4px;
+          cursor: pointer;
+          svg {
+            background-color: transparent;
+            color: #fff;
+            font-size: 20px;
           }
-  
-          th {
-            text-align: center;
-            padding: 8px;
+        }
+        button:hover {
+          background-color: rgba(255, 0, 0, 0.56);
+        }
+        .disable {
+          background-color: rgba(255, 0, 0, 0.56);
+          cursor: default;
+        }
+      }
+      .updateBtn {
+        button {
+          background-color: rgb(38, 150, 38);
+          border: none;
+          width: 2rem;
+          height: 2rem;
+          border-radius: 4px;
+          cursor: pointer;
+          svg {
+            background-color: transparent;
+            color: #fff;
+            font-size: 15px;
           }
-          thead {
-            th {
-              color: var(--dark-background-color);
-              background: var(--grey-color);
-              width: 15rem;
-              font-size: 1.2em;
-              &:nth-child(odd) {
-                color: var(--white-color);
-                background: var(--dark-background-color);
-              }
-            }
-            .trash {
-              span {
-                background-color: transparent;
-                svg {
-                  color: var(--red-color);
-                  font-size: 1.5rem;
-                  background-color: transparent;
-                  cursor: pointer;
-                }
-              }
-            }
-            .update {
-              span {
-                font-weight: 100;
-                font-size: 10px;
-                background-color: transparent;
-              }
-            }
+        }
+        button:hover {
+          background-color: rgba(38, 150, 38, 0.438);
+        }
+      }
+
+      th {
+        text-align: center;
+        padding: 8px;
+      }
+      thead {
+        th {
+          color: var(--dark-background-color);
+          background: var(--grey-color);
+          width: 15rem;
+          font-size: 1.2em;
+          &:nth-child(odd) {
+            color: var(--white-color);
+            background: var(--dark-background-color);
           }
-          tbody {
-            tr {
-              border-bottom: 1px solid var(--dark-background-color);
-  
-              td {
-                padding: 1rem;
-                color: var(--grey-color);
-                width: 15rem;
-              }
-              .close {
-                svg {
-                  color: var(--red-color);
-                  font-size: 1.1rem;
-                  cursor: pointer;
-                }
-              }
-              .amount {
-                display: flex;
-                flex-direction: row;
-                align-items: center;
-                justify-content: center;
-                .decrease {
-                  background-color: red;
-                  color: #fff;
-                  border: none;
-                  width: 1.5rem;
-                  height: 1.5rem;
-                  border-radius: 4px;
-                  font-weight: bold;
-                  cursor: pointer;
-                }
-                .increase {
-                  background-color: green;
-                  color: #fff;
-                  border: none;
-                  width: 1.5rem;
-                  height: 1.5rem;
-                  border-radius: 4px;
-                  font-weight: bold;
-                  cursor: pointer;
-                }
-                input {
-                  outline: none;
-                  width: 4.5rem;
-                  margin: 0 4px;
-                  color: var(--dark-background-color);
-                  text-align: center;
-                  background-color: var(--white-color);
-                  border: none;
-                }
-              }
-              .price {
-                input {
-                  background-color: var(--white-color);
-                  border: none;
-                  width: 4.5rem;
-                  outline: none;
-                  text-align: center;
-                }
-              }
-              .cost {
-                input {
-                  background-color: var(--grey-color);
-                  width: 4.5rem;
-                  border: none;
-                  outline: none;
-                  text-align: center;
-                }
-              }
-            }
-            .hiddenTr {
-                display: none;
+        }
+        .trash {
+          span {
+            background-color: transparent;
+            svg {
+              color: var(--red-color);
+              font-size: 1.5rem;
+              background-color: transparent;
+              cursor: pointer;
             }
           }
         }
-        @media (max-width: 767px) {
-          .flTable {
-            display: block;
-            width: 100%;
-            thead {
-              display: block;
-              float: left;
-  
-              th {
-                display: block;
-                text-align: left;
-  
-                &:last-child {
-                  border-bottom: none;
-                }
-              }
-            }
-            tbody {
-              display: block;
-              width: auto;
-              position: relative;
-              overflow-x: auto;
-              tr {
-                display: table-cell;
-                &:nth-child(odd) {
-                  background: none;
-                }
-              }
-              td {
-                display: block;
-                text-align: center;
-              }
-            }
-            td {
-              padding: 20px 0.625em 0.625em 0.625em;
-              height: 60px;
-              vertical-align: middle;
-              box-sizing: border-box;
-              overflow-x: hidden;
-              overflow-y: auto;
-              width: 120px;
-              font-size: 13px;
-              text-overflow: ellipsis;
-            }
-            th {
-              padding: 20px 0.625em 0.625em 0.625em;
-              height: 60px;
-              vertical-align: middle;
-              box-sizing: border-box;
-              overflow-x: hidden;
-              overflow-y: auto;
-              width: 120px;
-              font-size: 13px;
-              text-overflow: ellipsis;
-            }
-            tr {
-              &:nth-child(even) {
-                background: transparent;
-              }
-              td {
-                &:nth-child(odd) {
-                  background: var(--dark-background-color);
-                  border-right: 1px solid var(--grey-color);
-                }
-                &:nth-child(even) {
-                  border-right: 1px solid var(--grey-color);
-                }
-              }
-            }
-          }
-          .tableWrapper {
-            &:before {
-              content: "Yana kaydırın >";
-              display: block;
-              text-align: right;
-              font-size: 11px;
-              color: var(--white-color);
-              padding: 0 0 10px;
-            }
+        .update {
+          span {
+            font-weight: 100;
+            font-size: 10px;
+            background-color: transparent;
           }
         }
       }
-      .pagination {
-        padding: 1rem;
-        margin: 2rem 0 6rem 0;
-        background-color: var(--dark-color);
-        border-radius: 8px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        div {
-          max-width: 350px;
-          display: flex;
-          align-items: center;
-  
-          padding: 0.5rem;
-          overflow-x: auto;
-          white-space: nowrap;
-          border-radius: 8px;
-          button {
-            border-radius: 50%;
-            border: none;
-            background-color: var(--red-color);
-            color: var(--white-color);
-            font-weight: bold;
-            width: 20px;
-            height: 20px;
+      tbody {
+        tr {
+          border-bottom: 1px solid var(--dark-background-color);
+
+          td {
+            padding: 1rem;
+            color: var(--grey-color);
+            width: 15rem;
+          }
+          .close {
+            svg {
+              color: var(--red-color);
+              font-size: 1.1rem;
+              cursor: pointer;
+            }
+          }
+          .amount {
             display: flex;
+            flex-direction: row;
             align-items: center;
             justify-content: center;
-            margin: 4px;
-            padding: 16px;
-            cursor: pointer;
+            .decrease {
+              background-color: red;
+              color: #fff;
+              border: none;
+              width: 1.5rem;
+              height: 1.5rem;
+              border-radius: 4px;
+              font-weight: bold;
+              cursor: pointer;
+            }
+            .increase {
+              background-color: green;
+              color: #fff;
+              border: none;
+              width: 1.5rem;
+              height: 1.5rem;
+              border-radius: 4px;
+              font-weight: bold;
+              cursor: pointer;
+            }
+            input {
+              outline: none;
+              width: 4.5rem;
+              margin: 0 4px;
+              color: var(--dark-background-color);
+              text-align: center;
+              background-color: var(--white-color);
+              border: none;
+            }
           }
-          button:hover {
-            background-color: var(--dark-color);
+          .price {
+            input {
+              background-color: var(--white-color);
+              border: none;
+              width: 4.5rem;
+              outline: none;
+              text-align: center;
+            }
           }
-          .activePage {
-            background-color: var(--dark-color);
+          .cost {
+            input {
+              background-color: var(--grey-color);
+              width: 4.5rem;
+              border: none;
+              outline: none;
+              text-align: center;
+            }
           }
         }
-  
-        div::-webkit-scrollbar {
-          cursor: pointer;
-         height: 10px;
+        .hiddenTr {
+          display: none;
         }
-  
-        div::-webkit-scrollbar-track {
-          background-color: #fff;
+      }
+    }
+    @media (max-width: 767px) {
+      .flTable {
+        display: block;
+        width: 100%;
+        thead {
+          display: block;
+          float: left;
+
+          th {
+            display: block;
+            text-align: left;
+
+            &:last-child {
+              border-bottom: none;
+            }
+          }
         }
-  
-        div::-webkit-scrollbar-thumb {
-          background-color: var(--red-color);
-          border-radius: 8px;
-          cursor: pointer;
+        tbody {
+          display: block;
+          width: auto;
+          position: relative;
+          overflow-x: auto;
+          tr {
+            display: table-cell;
+            &:nth-child(odd) {
+              background: none;
+            }
+          }
+          td {
+            display: block;
+            text-align: center;
+          }
+        }
+        td {
+          padding: 20px 0.625em 0.625em 0.625em;
+          height: 60px;
+          vertical-align: middle;
+          box-sizing: border-box;
+          overflow-x: hidden;
+          overflow-y: auto;
+          width: 120px;
+          font-size: 13px;
+          text-overflow: ellipsis;
+        }
+        th {
+          padding: 20px 0.625em 0.625em 0.625em;
+          height: 60px;
+          vertical-align: middle;
+          box-sizing: border-box;
+          overflow-x: hidden;
+          overflow-y: auto;
+          width: 120px;
+          font-size: 13px;
+          text-overflow: ellipsis;
+        }
+        tr {
+          &:nth-child(even) {
+            background: transparent;
+          }
+          td {
+            &:nth-child(odd) {
+              background: var(--dark-background-color);
+              border-right: 1px solid var(--grey-color);
+            }
+            &:nth-child(even) {
+              border-right: 1px solid var(--grey-color);
+            }
+          }
+        }
+      }
+      .tableWrapper {
+        &:before {
+          content: "Yana kaydırın >";
+          display: block;
+          text-align: right;
+          font-size: 11px;
+          color: var(--white-color);
+          padding: 0 0 10px;
         }
       }
     }
   }
-  
+  .pagination {
+    padding: 1rem;
+    margin: 2rem 0 6rem 0;
+    background-color: transparent;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    div {
+      max-width: 350px;
+      display: flex;
+      align-items: center;
+      background-color: var(--dark-background-color);
+      padding: 0.5rem;
+      overflow-x: auto;
+      white-space: nowrap;
+      border-radius: 8px;
+      button {
+        border-radius: 50%;
+        border: none;
+        background-color: var(--red-color);
+        color: var(--white-color);
+        font-weight: bold;
+        width: 20px;
+        height: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 4px;
+        padding: 16px;
+        cursor: pointer;
+      }
+      button:hover {
+        background-color: var(--dark-color);
+      }
+      .activePage {
+        background-color: var(--dark-color);
+      }
+    }
+
+    div::-webkit-scrollbar {
+      cursor: pointer;
+      height: 10px;
+    }
+
+    div::-webkit-scrollbar-track {
+      background-color: #fff;
+    }
+
+    div::-webkit-scrollbar-thumb {
+      background-color: var(--red-color);
+      border-radius: 8px;
+      cursor: pointer;
+    }
+  }
+}

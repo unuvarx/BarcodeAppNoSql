@@ -4,19 +4,18 @@ import withAuth from "@/lib/withAuth";
 import Navbar from "@/components/navbar/[index]";
 import Footer from "@/components/footer";
 import AddProduct from "@/components/addProduct";
-
-
-
-
+import Layout from "@/lib/layout";
 
 const AddProductPage = () => {
   return (
-    <div className={styles.addProductContainer}>
-      <Navbar />
-      <h1>Ürün Ekle</h1>
-      <AddProduct/>
-      <Footer />
-    </div>
+    <Layout>
+      <div className={styles.addProductContainer}>
+     
+        <h1>Ürün Ekle</h1>
+        <AddProduct />
+     
+      </div>
+    </Layout>
   );
 };
 export default withAuth(AddProductPage);

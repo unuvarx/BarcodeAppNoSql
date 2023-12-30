@@ -18,14 +18,37 @@ import { useRouter } from "next/router";
 import Footer from "@/components/footer";
 import Tr from "@/components/Tr";
 import Spinner from "@/components/spinner";
+import Layout from "@/lib/layout";
+import Message from "@/components/message";
 
 const Sales = () => {
   const router = useRouter();
+
   const { data, cost } = useSelector((state) => state.barcodeInputs);
   const { userInfo, numberOfTimesRemaining } = useSelector(
     (state) => state.user
   );
   const dispatch = useDispatch();
+  const handleShowMessage = (msg, sts) => {
+    setShowMessage({
+      showMessage: true,
+      message: msg,
+      status: sts,
+    });
+  };
+
+  const handleCloseMessage = () => {
+    setShowMessage({
+      showMessage: false,
+      message: "",
+      status: true,
+    });
+  };
+  const [showMessage, setShowMessage] = useState({
+    showMessage: false,
+    message: "",
+    status: true,
+  });
 
   const reset = () => {
     dispatch(setBarcode(""));
@@ -47,6 +70,10 @@ const Sales = () => {
           price: product.price,
         }
       );
+      handleShowMessage(
+        "Satış ve fiyat güncelleme işlemi başarılı bir şekilde gerçekleşmiştir.",
+        true
+      );
     } catch (error) {
       console.warn(error);
     }
@@ -66,12 +93,22 @@ const Sales = () => {
           data.map((product) => {
             if (product.isChecked) {
               updateProduct(product);
+            } else {
+              handleShowMessage(
+                "Satış işlemi başarılı bir şekilde gerçekleşmiştir.",
+                true
+              );
             }
           });
           reset();
         } catch (error) {
           console.warn(error);
         }
+      } else {
+        handleShowMessage(
+          "Satış işlemi ürün eklenmediği için başarısız oldu.",
+          false
+        );
       }
     } else {
       router.push("/buy-lisence");
@@ -79,12 +116,26 @@ const Sales = () => {
   };
 
   return (
-    <div className={styles.salesContainer}>
-      <Navbar />
+    <Layout>
       <div className={styles.sale}>
         <FindBarcodeInput />
+        {showMessage.showMessage && (
+          <Message
+            message={showMessage.message}
+            onClose={handleCloseMessage}
+            status={showMessage.status}
+          />
+        )}
         <div className={styles.productsListContainer}>
-          <button className={styles.completeBtn} onClick={completeTheSale}>
+          <button
+            disabled={showMessage.showMessage ? true : false}
+            className={
+              showMessage.showMessage
+                ? `${styles.completeBtn} ${styles.disable}`
+                : styles.completeBtn
+            }
+            onClick={completeTheSale}
+          >
             SATIŞI TAMAMLA(F8)
           </button>
 
@@ -143,8 +194,7 @@ const Sales = () => {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 

@@ -6,6 +6,7 @@ import { useRouter } from "next/router";
 import { setData, addData } from "@/redux/reducers/barcodeInputSlice/[index]";
 import { useDispatch } from "react-redux";
 import { getUser } from "@/redux/reducers/userSlice/[index]";
+import Message from "../message";
 
 export default function AddProduct({ control }) {
   const [barcode, setBarcode] = useState("");
@@ -13,6 +14,27 @@ export default function AddProduct({ control }) {
   const [price, setPrice] = useState("");
   const [isThere, setIsThere] = useState(false);
   const [warning, setWarning] = useState(false);
+
+  const handleShowMessage = (msg, sts) => {
+    setShowMessage({
+      showMessage: true,
+      message: msg,
+      status: sts,
+    });
+  };
+
+  const handleCloseMessage = () => {
+    setShowMessage({
+      showMessage: false,
+      message: "",
+      status: true,
+    });
+  };
+  const [showMessage, setShowMessage] = useState({
+    showMessage: false,
+    message: "",
+    status: true,
+  });
 
   const dispatch = useDispatch();
   const router = useRouter();
@@ -48,16 +70,16 @@ export default function AddProduct({ control }) {
     try {
       if (numberOfTimesRemaining > 0) {
         const findedProduct = userInfo?.products.find(
-          (product) => product.barcode === Number(barcode)
+          (product) => product.barcode === barcode
         );
+
         if (findedProduct) {
-          console.log(findedProduct);
           setIsThere(true);
         } else {
           if (
             barcode.toString().length > 0 &&
-            productName.length > 0 &&
-            price.length > 0
+            productName.toString().length > 0 &&
+            price.toString().length > 0
           ) {
             const res = await axios.put(
               `http://localhost:8800/api/product/${userInfo?._id}`,
@@ -85,26 +107,43 @@ export default function AddProduct({ control }) {
               };
               dispatch(addData(newData));
             }
+            setIsThere(false);
+            setWarning(false);
+
+            dispatch(getUser());
+            handleShowMessage(
+              "Ekleme işlemi başarılı bir şekilde gerçekleşmiştir.",
+              true
+            );
           } else {
-            if (
-              barcode.toString().length <= 0 ||
-              productName.length <= 0 ||
-              price.length <= 0
-            ) {
-              setWarning(true);
-            }
+            setWarning(true);
           }
         }
       } else {
+        handleShowMessage(
+          "Ekleme işlemi yapılırken bir hatayla karşılaşıldı.",
+          false
+        );
         router.push("/buy-lisence");
       }
     } catch (error) {
+      handleShowMessage(
+        "Ekleme işlemi yapılırken bir hatayla karşılaşıldı.",
+        false
+      );
       console.warn(error);
     }
   };
 
   return (
     <div className={styles.container}>
+      {showMessage.showMessage && (
+        <Message
+          message={showMessage.message}
+          onClose={handleCloseMessage}
+          status={showMessage.status}
+        />
+      )}
       <div className={styles.inputsContainer}>
         <div>
           <span>Barkod</span>
@@ -115,6 +154,7 @@ export default function AddProduct({ control }) {
             onChange={changeBarcode}
             type="text"
             maxLength={16}
+            disabled={showMessage.showMessage ? true : false}
           />
         </div>
         <div>
@@ -126,6 +166,7 @@ export default function AddProduct({ control }) {
             onChange={changeProductName}
             type="text"
             maxLength={50}
+            disabled={showMessage.showMessage ? true : false}
           />
         </div>
 
@@ -137,6 +178,7 @@ export default function AddProduct({ control }) {
             value={price}
             onChange={changePrice}
             type="text"
+            disabled={showMessage.showMessage ? true : false}
           />
         </div>
         <div>
@@ -155,7 +197,13 @@ export default function AddProduct({ control }) {
             <></>
           )}
 
-          <button onClick={submit}>Ekle</button>
+          <button
+            disabled={showMessage.showMessage ? true : false}
+            className={showMessage.showMessage ? styles.disable : ""}
+            onClick={submit}
+          >
+            Ekle
+          </button>
         </div>
       </div>
     </div>

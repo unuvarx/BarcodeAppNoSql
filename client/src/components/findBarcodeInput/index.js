@@ -73,7 +73,6 @@ export default function FindBarcodeInput() {
             dispatch(addData(newData));
           }
         } else {
-         
           setIsThere(false);
         }
         dispatch(setBarcode(""));

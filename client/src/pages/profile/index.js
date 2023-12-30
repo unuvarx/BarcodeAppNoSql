@@ -25,6 +25,15 @@ const Profile = () => {
     }
   };
 
+  const calculateRemaining = () => {
+
+    const hour = Math.floor(numberOfTimesRemaining / (1000 * 60 * 60));
+    const day = numberOfDaysRemaining;
+    const remainingHours = hour - (24 * day);
+    const res = `${day} Gün ${remainingHours} Saat`
+    return res;
+  }
+
   return (
     <div>
       <Navbar />
@@ -60,7 +69,7 @@ const Profile = () => {
               <label htmlFor="">Kalan Lisans Süresi</label>
               <div className={styles.time}>
                 {numberOfTimesRemaining > 0
-                  ? `${numberOfDaysRemaining} Gün`
+                  ? calculateRemaining()
                   : 0}
               </div>
             </div>

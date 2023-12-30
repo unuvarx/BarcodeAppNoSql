@@ -6,6 +6,7 @@ import Footer from "@/components/footer";
 import { useRouter } from "next/router";
 import { useSelector } from "react-redux";
 import { formatDate } from "@/redux/reducers/userSlice/[index]";
+import Layout from "@/lib/layout";
 
 const SalesHistoryDetail = () => {
   const router = useRouter();
@@ -31,8 +32,7 @@ const SalesHistoryDetail = () => {
   }, [userInfo, history]);
 
   return (
-    <div className={styles.salesContainer}>
-      <Navbar />
+    <Layout>
       <div className={styles.sale}>
         <h1>Satış Detayı</h1>
         <div className={styles.tableContainer}>
@@ -54,7 +54,7 @@ const SalesHistoryDetail = () => {
                     <td> {item.productName} </td>
                     <td> {item.amount} </td>
                     <td> {item.price}₺ </td>
-                    <td className={styles.totalCost}> {item.cost}₺ </td>
+                    <td className={styles.totalCost}> {item.cost.toFixed(2)}₺ </td>
                   </tr>
                 ))}
                 <tr className={styles.hiddenTr}>
@@ -70,8 +70,7 @@ const SalesHistoryDetail = () => {
           </div>
         </div>
       </div>
-      <Footer />
-    </div>
+    </Layout>
   );
 };
 export default withAuth(SalesHistoryDetail);
